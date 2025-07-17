@@ -3,7 +3,6 @@ import Image from "next/image";
 const PerformanceContainer = ({
   image,
   name,
-  description
 }: {
   image: string;
   name: string;
