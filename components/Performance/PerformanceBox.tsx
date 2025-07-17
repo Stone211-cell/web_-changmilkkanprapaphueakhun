@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Button } from "../ui/button";
+import fs from "fs";
+import path from "path";
 import PerformanceContainer from "./PerformanceContainer";
 
 const PerformanceBox = ({
@@ -10,6 +12,20 @@ const PerformanceBox = ({
   pops?: string;
 }) => {
   const LINKIMG = "/images/performance";
+
+
+    const dir = path.join(process.cwd(), "public/images/performance");
+  
+    // โหลดไฟล์ทั้งหมด + เวลาแก้ไข
+    const allImagesWithTime = fs
+      .readdirSync(dir)
+      .filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
+      .map((file) => {
+        const filePath = path.join(dir, file);
+        const stats = fs.statSync(filePath);
+        return { file, mtime: stats.mtime };
+      })
+      .sort((a, b) => b.mtime.getTime() - a.mtime.getTime()); // ใหม่ไปเก่า
   return (
     <div>
       {" "}
@@ -25,36 +41,13 @@ const PerformanceBox = ({
           </Button>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-6 px-10">
-          <PerformanceContainer
-            image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}
-            name="เปลี่ยนท่อ ติดตั้งซิงค์ล้างหน้า"
-            // description="รับติดตั้งปั้มน้ำรับติดตั้งปั้มน้ำรับติดตั้งปั้มน้ำรับติดตั้งปั้มน้ำ"
-          />
-
-          <PerformanceContainer
-            image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_2.jpg"}
-            name="เดินท่อใหม่ เปลี่ยนระบบจากใต้ดินย้ายมาบนดิน"
-          />
-
-          <PerformanceContainer
-            image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_3.jpg"}
-            name="รับช่อมปั้มน้ำดังปั้มน้ำทำงานตลอดเวลา"
-          />
-
-          <PerformanceContainer
-            image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_4.jpg"}
-            name=" รับติดตั้งปั้มน้ำตามที่ลูกค้าต้องการ"
-          />
-
-          <PerformanceContainer
-            image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_5.jpg"}
-            name="รับช่อมน้ำหยดน้ำรั่วน้ำชึม และติดตั้งสุขภัณฑ์ไหม่"
-          />
-
-          <PerformanceContainer
-            image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_6.jpg"}
-            name="รับเดินระบบท่อประปาไหม่ครบวงจร"
-          />
+         {allImagesWithTime.map(({ file }, i) => (
+            <PerformanceContainer
+              key={`atmosphere-${i}`}
+              image={`${LINKIMG}/${file}`}
+              name={`ซ่อมด่วน 24 ชั่วโมง ติดต่อช่างมิล`}
+            />
+          ))}
         </div>
       </section>
     </div>

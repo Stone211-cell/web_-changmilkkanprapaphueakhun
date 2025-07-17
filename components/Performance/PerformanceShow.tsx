@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import PerformanceContainer from "./PerformanceContainer";
 
+
 const PerformanceBox = ({
   mainmsg,
   pops,
@@ -10,6 +11,8 @@ const PerformanceBox = ({
   pops?: string;
 }) => {
   const LINKIMG = "/images/performance";
+
+
   return (
     <div>
       {" "}

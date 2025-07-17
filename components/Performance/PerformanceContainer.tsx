@@ -24,7 +24,7 @@ const PerformanceContainer = ({
 
       <div className="flex flex-col h-[100px]   mt-3">
         <h3 className="text-lg text-blue-800 font-semibold ">{name}</h3>
-        <p className="text-sm text-gray-500  ">{description}</p>
+        <p className="text-md text-red-700  "> 064 4088510</p>
       </div>
 
       <div className="absolute top-1 right-1 bg-red-700 rounded-2xl p-2">
