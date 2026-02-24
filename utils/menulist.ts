@@ -9,7 +9,7 @@ export const List: MenuItem[] = [
   { href: "/aboutus", label: "เกี่ยวกับเรา" },
   { href: "/service", label: "การบริการของเรา" },
   { href: "/performance", label: "ประวัติการทำงาน" },
-  // { href: "/contact", label: "ติดต่อสอบถาม" },
+  { href: "/blog", label: "บทความ" },
   // { href: "/admin/createproduct", label: "เพิ่มสินค้า" },
   // { href: `/favorite`, label: "ชื่นชอบ" },
 

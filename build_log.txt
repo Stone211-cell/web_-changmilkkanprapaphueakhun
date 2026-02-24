@@ -1,0 +1,199 @@
+﻿
+> my-app@0.1.0 build
+> next build
+
+โ–ฒ Next.js 16.1.6 (Turbopack)
+
+  Creating an optimized production build ...
+npm : 
+At line:1 char:1
++ npm run build *>&1 | 
+Out-File -Encoding 
+utf8 build_log.txt
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (:String) [],    
+ RemoteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+> Build error occurred
+Error: Turbopack build 
+failed with 2 errors:
+./app/globals.css
+Error evaluating 
+Node.js code
+Error: Cannot find 
+module '../pkg'
+Require stack:
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\node_modules\l
+ightningcss\node\index.
+js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\node_modules\@
+tailwindcss\node\dist\i
+ndex.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\node_modules\@
+tailwindcss\postcss\dis
+t\index.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\.next\build\ch
+unks\[root-of-the-serve
+r]__51225daf._.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\.next\build\ch
+unks\[turbopack]_runtim
+e.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\.next\build\po
+stcss.js
+    [at Module._resolve
+Filename (node:internal
+/modules/cjs/loader:120
+7:15)]
+    [at Module._load (n
+ode:internal/modules/cj
+s/loader:1038:27)]
+    [at Module.require 
+(node:internal/modules/
+cjs/loader:1289:19)]
+    [at require (node:i
+nternal/modules/helpers
+:182:18)]
+    [at 
+Object.<anonymous> (D:\
+เนเธเธฃเน€เธเธ\webs
+ite_work\ChangmilkKanPr
+apa\node_modules\lightn
+ingcss\node\index.js:17
+:20)]
+    [at 
+Module._compile (node:i
+nternal/modules/cjs/loa
+der:1521:14)]
+    [at 
+Module._extensions..js 
+(node:internal/modules/
+cjs/loader:1623:10)]
+    [at Module.load (no
+de:internal/modules/cjs
+/loader:1266:32)]
+    [at Module._load (n
+ode:internal/modules/cj
+s/loader:1091:12)]
+    [at Module.require 
+(node:internal/modules/
+cjs/loader:1289:19)]
+
+Import trace:
+  Client Component 
+Browser:
+    ./app/globals.css 
+[Client Component 
+Browser]
+    ./app/layout.tsx 
+[Server Component]
+
+
+./node_modules/@fortawe
+some/fontawesome-svg-co
+re/styles.css
+Error evaluating 
+Node.js code
+Error: Cannot find 
+module '../pkg'
+Require stack:
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\node_modules\l
+ightningcss\node\index.
+js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\node_modules\@
+tailwindcss\node\dist\i
+ndex.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\node_modules\@
+tailwindcss\postcss\dis
+t\index.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\.next\build\ch
+unks\[root-of-the-serve
+r]__51225daf._.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\.next\build\ch
+unks\[turbopack]_runtim
+e.js
+- D:\เนเธเธฃเน€เธเธ
+\website_work\Changmilk
+KanPrapa\.next\build\po
+stcss.js
+    [at Module._resolve
+Filename (node:internal
+/modules/cjs/loader:120
+7:15)]
+    [at Module._load (n
+ode:internal/modules/cj
+s/loader:1038:27)]
+    [at Module.require 
+(node:internal/modules/
+cjs/loader:1289:19)]
+    [at require (node:i
+nternal/modules/helpers
+:182:18)]
+    [at 
+Object.<anonymous> (D:\
+เนเธเธฃเน€เธเธ\webs
+ite_work\ChangmilkKanPr
+apa\node_modules\lightn
+ingcss\node\index.js:17
+:20)]
+    [at 
+Module._compile (node:i
+nternal/modules/cjs/loa
+der:1521:14)]
+    [at 
+Module._extensions..js 
+(node:internal/modules/
+cjs/loader:1623:10)]
+    [at Module.load (no
+de:internal/modules/cjs
+/loader:1266:32)]
+    [at Module._load (n
+ode:internal/modules/cj
+s/loader:1091:12)]
+    [at Module.require 
+(node:internal/modules/
+cjs/loader:1289:19)]
+
+Import trace:
+  Client Component 
+Browser:
+    ./node_modules/@for
+tawesome/fontawesome-sv
+g-core/styles.css 
+[Client Component 
+Browser]
+    
+./lib/fontawesome.ts 
+[Server Component]
+    ./app/layout.tsx 
+[Server Component]
+
+
+    at ignore-listed 
+frames

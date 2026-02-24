@@ -3,104 +3,11 @@ import { ContactIcon } from "../Contacted/ContactIcon";
 import { faLine } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Mapcontactdetail = () => {
   return (
-    <div>
-      <div className="relative bg-gradient-to-b from-blue-200 to-blue-800">
-        <Image
-          src="/images/banner/S__8683544.webp"
-          alt="ซ่อมประปา"
-          className="absolute inset-0 w-full h-[100%] min-h-[500px] object-cover  backdrop-blur-md"
-          fill
-        />
-
-        <div className="relative z-10 bg-blue-900/50 p-8 h-[100%] min-h-[500px] rounded-xl text-white backdrop-blur-sm  text-center  flex flex-col justify-center">
-          <div className="flex justify-center ">
-            <h2 className="text-2xl font-bold  bg-white text-black w-50 rounded-md transition-transform duration-200 ease-in-out hover:scale-110  ">
-              <Link href="#map">ติดต่อเรา</Link>
-            </h2>
-          </div>
-
-          <div className="my-5">
-            <h3 className=" text-5xl font-bold py-5">ช่างมิล ประปาเพื่อคุณ</h3>
-            <p className="mt-2 text-sm">
-              บริการรับซ่อมประปา หาจุดรั่ว เดินท่อประปา
-              บริการรับติดตั้งที่เก็บน้ำ ทุกประเภท ราคาถูก
-            </p>
-          </div>
-
-          <div className="flex justify-center text-center ">
-            <h2 className="text-md font-bold mt-5  text-black bg-yellow-500 rounded-2xl p-2 transition-transform duration-200 ease-in-out hover:scale-110 ">
-              <Link
-                href="https://maps.app.goo.gl/bu6t2kMvaarxJroE9"
-                className="text-white"
-              >
-                เปิดแผนที่นำทาง
-              </Link>
-            </h2>
-          </div>
-
-          <div
-            id="map"
-            className=" my-5 text-center flex flex-col justify-items-center"
-          >
-            <div className=" flex flex-col items-center justify-items-center justify-self-center">
-              <ContactIcon
-                sizeicon="2x"
-                coloricon="yellow"
-                msg="ที่ตั้ง"
-                LINKBTN="https://maps.app.goo.gl/Xb2CXB2nrFop37ee7"
-                icontype={faLocationDot}
-                classtype=""
-              />
-            </div>
-
-            <p>
-              48/23 ซอย หินอ่อน 3 แขวงสายไหม เขตสายไหม กรุงเทพมหานคร 10220
-              ประเทศไทย
-            </p>
-          </div>
-
-          <div className="flex justify-center text-center ">
-            <div className="grid grid-cols-1 md:grid-cols-3  gap-10 ">
-              <span>
-                <ContactIcon
-                  sizeicon="2x"
-                  coloricon="yellow"
-                  msg="โทรศัพท์สอบถาม"
-                  description="064-408-8510"
-                  LINKBTN="tel:0644088510"
-                  icontype={faPhone}
-                  classtype=""
-                />
-              </span>
-              <span>
-                <ContactIcon
-                  sizeicon="2x"
-                  coloricon="yellow"
-                  msg="โทรศัพท์สอบถาม"
-                  description="096-979-2757"
-                  LINKBTN="tel:0969792757"
-                  icontype={faPhone}
-                  classtype=""
-                />
-              </span>
-              <span>
-                <ContactIcon
-                  sizeicon="2x"
-                  coloricon="yellow"
-                  msg="LINE ID"
-                  description="0644088510"
-                  LINKBTN="tel:0644088510"
-                  icontype={faLine}
-                  classtype=""
-                />
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div className=" my-auto">
 
       <div>
         <iframe
@@ -108,11 +15,90 @@ const Mapcontactdetail = () => {
           width="100%"
           height="500"
           loading="lazy"
-          //               style="border:0;"
-          // allowfullscreen=""
-          // referrerpolicy="no-referrer-when-downgrade"
+        //               style="border:0;"
+        // allowfullscreen=""
+        // referrerpolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+
+      <div className="relative overflow-hidden    shadow-2xl ring-1 ring-white/10">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/banner/map.png"
+            alt="พิกัดช่างมิล"
+            className="w-full h-full object-cover"
+            fill
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/80 to-slate-900/40 backdrop-blur-[2px]"></div>
+        </div>
+
+        <div className="relative z-10 p-8 md:p-20 min-h-[600px] flex flex-col justify-center max-w-4xl text-white">
+          <div className="inline-block mb-6">
+            <span className="px-4 py-1.5 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-[11px] font-black tracking-[0.2em] uppercase backdrop-blur-md">
+              Contact Location
+            </span>
+          </div>
+
+          <h3 className="text-5xl md:text-8xl font-black mb-8 tracking-tighter leading-none">
+            ช่างมิล <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600 italic">ประปาเพื่อคุณ</span>
+          </h3>
+
+          <p className="text-lg md:text-2xl text-slate-300 mb-12 max-w-xl font-medium leading-relaxed drop-shadow-lg">
+            พร้อมให้บริการรับซ่อมประปา หาจุดรั่ว เดินท่อประปา และติดตั้งปั๊มน้ำ
+            ดูแลทุกปัญหาประปาและระบบน้ำในบ้านคุณ ด้วยคุณภาพมาตรฐานสากล
+          </p>
+
+          <div className="flex flex-wrap gap-4 mb-16">
+            <Link
+              href="https://maps.app.goo.gl/bu6t2kMvaarxJroE9"
+              target="_blank"
+              className="bg-white text-slate-900 hover:bg-blue-50 px-10 py-5 rounded-2xl font-black transition-all shadow-2xl hover:shadow-blue-500/30 active:scale-95 flex items-center gap-3 text-lg"
+            >
+              <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              เปิดแผนที่นำทาง
+            </Link>
+            <Link
+              href="tel:0644088510"
+              className="bg-slate-800/40 hover:bg-slate-800/60 backdrop-blur-xl border border-white/10 text-white px-10 py-5 rounded-2xl font-black transition-all active:scale-95 text-lg"
+            >
+              064-408-8510
+            </Link>
+          </div>
+
+          <div id="map" className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white/5 backdrop-blur-2xl p-8 rounded-3xl border border-white/5 flex items-start gap-5 group hover:bg-white/10 transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <FontAwesomeIcon icon={faLocationDot} className="text-blue-400 text-xl" />
+              </div>
+              <div>
+                <h4 className="font-black text-xs text-blue-400 mb-2 uppercase tracking-widest">Office Location</h4>
+                <p className="text-base font-medium text-slate-100 leading-relaxed">
+                  48/23 ซอย หินอ่อน 3 แขวงสายไหม <br /> เขตสายไหม กรุงเทพมหานคร 10220
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white/5 backdrop-blur-2xl p-8 rounded-3xl border border-white/5 flex items-start gap-5 group hover:bg-white/10 transition-colors">
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                <FontAwesomeIcon icon={faPhone} className="text-blue-400 text-xl" />
+              </div>
+              <div>
+                <h4 className="font-black text-xs text-blue-400 mb-2 uppercase tracking-widest">Emergency Call</h4>
+                <p className="text-base font-black text-slate-100 italic">
+                  Hotline: 064-408-8510 <br />
+                  Office: 096-979-2757
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   );
 };

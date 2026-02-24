@@ -1,5 +1,10 @@
-import { ContactIcon } from "./ContactIcon";
+"use client";
 
+import { useRef } from "react";
+import { ContactIcon } from "./ContactIcon";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -7,16 +12,38 @@ import {
   faLine,
 } from "@fortawesome/free-brands-svg-icons";
 
+gsap.registerPlugin(ScrollTrigger);
+
 type classtype = {
   classtype?: string;
   pops?: string;
 };
+
 const ContactedBox = ({ classtype, pops }: classtype) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    gsap.from(containerRef.current?.children ? Array.from(containerRef.current.children) : [], {
+      scale: 0.8,
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "back.out(1.5)",
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 90%",
+      },
+    });
+  }, { scope: containerRef });
+
   return (
-    <div>
-      {" "}
-      <div className="  justify-items-center ">
-        <div className="grid grid-cols-1 px-5 gap-5  md:grid-cols-2 justify-items-center  ">
+    <div className="w-full flex justify-center my-6">
+      <div
+        ref={containerRef}
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 px-4 md:px-8 max-w-7xl w-full"
+      >
+        <div className="h-full w-full">
           <ContactIcon
             pops={pops}
             sizeicon="2x"
@@ -27,7 +54,9 @@ const ContactedBox = ({ classtype, pops }: classtype) => {
             icontype={faFacebookMessenger}
             classtype={classtype}
           />
+        </div>
 
+        <div className="h-full w-full">
           <ContactIcon
             pops={pops}
             sizeicon="2x"
@@ -38,43 +67,32 @@ const ContactedBox = ({ classtype, pops }: classtype) => {
             icontype={faFacebook}
             classtype={classtype}
           />
+        </div>
 
-          <span className="pr-10 ">
-            <ContactIcon
-              pops={pops}
-              sizeicon="2x"
-              coloricon="red"
-              msg="โทรสอบถาม"
-              description="064-408-8510"
-              LINKBTN="tel:0644088510"
-              icontype={faPhone}
-              classtype={classtype}
-            />
-          </span>
-          <span className="pr-10 ">
-            <ContactIcon
-              pops={pops}
-              sizeicon="2x"
-              coloricon="red"
-              msg="โทรสอบถาม"
-              description="096-979-2757"
-              LINKBTN="tel:0969792757"
-              icontype={faPhone}
-              classtype={classtype}
-            />
-          </span>
-          <span className="pr-10">
-            <ContactIcon
-              pops={pops}
-              sizeicon="2x"
-              coloricon="green"
-              msg="LINE ID"
-              description="064-408-8510"
-              LINKBTN="tel:0644088510"
-              icontype={faLine}
-              classtype={classtype}
-            />
-          </span>
+        <div className="h-full w-full">
+          <ContactIcon
+            pops={pops}
+            sizeicon="2x"
+            coloricon="red"
+            msg="โทรสอบถาม"
+            description="064-408-8510"
+            LINKBTN="tel:0644088510"
+            icontype={faPhone}
+            classtype={classtype}
+          />
+        </div>
+
+        <div className="h-full w-full">
+          <ContactIcon
+            pops={pops}
+            sizeicon="2x"
+            coloricon="green"
+            msg="LINE ID"
+            description="064-408-8510"
+            LINKBTN="tel:0644088510"
+            icontype={faLine}
+            classtype={classtype}
+          />
         </div>
       </div>
     </div>

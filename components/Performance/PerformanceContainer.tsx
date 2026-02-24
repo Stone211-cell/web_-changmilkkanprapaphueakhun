@@ -9,25 +9,30 @@ const PerformanceContainer = ({
   description?: string;
 }) => {
   return (
-    <article className=" group relative border-1/4 bg-gray-700/4 p-2 rounded-3xl">
-      <div className="relative h-[300px] rounded-md">
+    <article className="group relative bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
+      <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
           src={image}
-          sizes="(max-width:768px) 100vw,50vw"
-
+          sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
           alt={name}
           fill
-          className="object-cover rounded-md group-hover:scale-105 transition-transform duration-300"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </div>
 
-      <div className="flex flex-col h-[100px]   mt-3">
-        <h3 className="text-lg text-blue-800 font-semibold ">{name}</h3>
-        <p className="text-md text-red-700  "> 064 4088510</p>
+      <div className="p-5 flex flex-col flex-grow">
+        <h3 className="text-lg font-bold text-slate-800 leading-tight mb-2 group-hover:text-blue-600 transition-colors">
+          {name}
+        </h3>
+        <div className="mt-auto flex items-center justify-between">
+          <p className="text-sm font-bold text-blue-600">ช่างมิล ประปา</p>
+          <p className="text-xs font-medium text-slate-400">064-408-8510</p>
+        </div>
       </div>
 
-      <div className="absolute top-1 right-1 bg-red-700 rounded-2xl p-2">
-        <p className="text-white">ผลงานของเรา</p>
+      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-blue-600/90 text-[10px] font-bold text-white uppercase tracking-widest backdrop-blur-sm shadow-lg">
+        Our Portfolio
       </div>
     </article>
   );
@@ -36,23 +41,23 @@ export default PerformanceContainer;
 
 
 
-      // <div
-      //   className="relative bg-black text-white overflow-hidden w-full min-h-screen"
-      //   data-aos="zoom-in-down"
-      // >
-      //   <Image
-      //     src="/Imgs/HomeImg/Authentic_ThaiMassage.jpg"
-      //     alt="Thaimassage"
-      //     fill
-      //     className="object-cover object-center opacity-30 z-0 h-full"
-      //   />
-      //   <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
-      //     <div className="text-center max-w-2xl">
-      //       <h2 className="text-4xl font-bold mb-4">Gallery!!</h2>
-      //       <p className="text-lg">Gallery in Our Thai Massage Shop</p>
-      //     </div>
-      //   </div>
-      // </div>
+// <div
+//   className="relative bg-black text-white overflow-hidden w-full min-h-screen"
+//   data-aos="zoom-in-down"
+// >
+//   <Image
+//     src="/Imgs/HomeImg/Authentic_ThaiMassage.jpg"
+//     alt="Thaimassage"
+//     fill
+//     className="object-cover object-center opacity-30 z-0 h-full"
+//   />
+//   <div className="absolute inset-0 z-10 flex items-center justify-center px-4">
+//     <div className="text-center max-w-2xl">
+//       <h2 className="text-4xl font-bold mb-4">Gallery!!</h2>
+//       <p className="text-lg">Gallery in Our Thai Massage Shop</p>
+//     </div>
+//   </div>
+// </div>
 
 
 // "use client";
