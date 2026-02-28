@@ -43,7 +43,7 @@ export const blogPosts: BlogPost[] = [
         date: "23 กุมภาพันธ์ 2569",
         author: "ช่างมิลการประปา",
         category: "ความรู้เรื่องประปา",
-        image: "/images/service/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg",
+        image: "/images/service/ซ่อมท่อน้ำใต้ดิน.jpg",
     },
     {
         id: "sewer-and-pipe-cleaning-guide",
@@ -52,6 +52,6 @@ export const blogPosts: BlogPost[] = [
         date: "24 กุมภาพันธ์ 2569",
         author: "ช่างมิลการประปา",
         category: "ปัญหาด่วน",
-        image: "/images/service/LINE_ALBUM_รูปตอนทำงาน_250618_4.jpg",
+        image: "/images/service/รับซ่อมรั่วซึม.webp",
     }
 ];
