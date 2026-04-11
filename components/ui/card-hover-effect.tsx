@@ -22,8 +22,7 @@ export const HoverEffect = ({
   return (
     <div
       className={cn(
-        "relative py-32 transition-all duration-700 ease-in-out",
-        hoveredIndex !== null ? "bg-slate-950" : "bg-white",
+        "relative py-24 md:py-32 transition-all duration-700 ease-in-out",
         className
       )}
     >
@@ -52,14 +51,13 @@ export const HoverEffect = ({
               <Card
                 className={cn(
                   "transition-all duration-700",
-                  hoveredIndex !== null && hoveredIndex !== idx ? "opacity-20 scale-95 blur-[2px]" : "opacity-100",
-                  hoveredIndex === idx ? "border-blue-500/50 shadow-[0_0_50px_rgba(37,99,235,0.2)] -translate-y-4" : ""
+                  hoveredIndex !== null && hoveredIndex !== idx ? "opacity-60 scale-[0.98]" : "opacity-100",
+                  hoveredIndex === idx ? "border-blue-500/50 shadow-[0_20px_60px_rgba(37,99,235,0.15)] -translate-y-4" : ""
                 )}
-                isDark={hoveredIndex !== null}
               >
                 <CardPicture src={item.pic}></CardPicture>
-                <CardTitle isDark={hoveredIndex !== null}>{item.title}</CardTitle>
-                <CardDescription isDark={hoveredIndex !== null}>{item.description}</CardDescription>
+                <CardTitle>{item.title}</CardTitle>
+                <CardDescription>{item.description}</CardDescription>
               </Card>
             </a>
           ))}
@@ -69,7 +67,7 @@ export const HoverEffect = ({
       {/* Background Decorative Element */}
       <div
         className={cn(
-          "absolute inset-0 z-0 transition-opacity duration-1000 pointer-events-none bg-gradient-to-br from-blue-900/20 via-transparent to-purple-900/20",
+          "absolute inset-0 z-0 transition-opacity duration-1000 pointer-events-none bg-gradient-to-br from-blue-50/80 via-transparent to-blue-100/50",
           hoveredIndex !== null ? "opacity-100" : "opacity-0"
         )}
       />
@@ -80,19 +78,14 @@ export const HoverEffect = ({
 export const Card = ({
   className,
   children,
-  isDark
 }: {
   className?: string;
   children: React.ReactNode;
-  isDark?: boolean;
 }) => {
   return (
     <div
       className={cn(
-        "rounded-[2.5rem] h-full w-full p-4 overflow-hidden transition-all duration-700 relative z-20 border",
-        isDark
-          ? "bg-slate-900/50 border-white/10 backdrop-blur-3xl shadow-2xl"
-          : "bg-white border-slate-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)]",
+        "rounded-[2.5rem] h-full w-full p-4 overflow-hidden transition-all duration-700 relative z-20 layout border bg-white border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
         className
       )}
     >
@@ -128,16 +121,13 @@ export const CardPicture = ({
 export const CardTitle = ({
   className,
   children,
-  isDark
 }: {
   className?: string;
   children: React.ReactNode;
-  isDark?: boolean;
 }) => {
   return (
     <h4 className={cn(
-      "text-2xl md:text-4xl font-black tracking-tighter transition-all duration-500 leading-tight",
-      isDark ? "text-white group-hover:text-blue-400" : "text-slate-900",
+      "text-2xl md:text-3xl font-black tracking-tighter transition-all duration-500 leading-tight text-slate-800 group-hover:text-blue-600",
       className
     )}>
       {children}
@@ -148,17 +138,14 @@ export const CardTitle = ({
 export const CardDescription = ({
   className,
   children,
-  isDark
 }: {
   className?: string;
   children: React.ReactNode;
-  isDark?: boolean;
 }) => {
   return (
     <p
       className={cn(
-        "mt-6 font-bold tracking-wide leading-relaxed text-sm md:text-base transition-all duration-500",
-        isDark ? "text-slate-300 opacity-80" : "text-slate-500",
+        "mt-4 font-medium tracking-wide leading-relaxed text-sm md:text-base transition-all duration-500 text-slate-500 group-hover:text-slate-700",
         className
       )}
     >

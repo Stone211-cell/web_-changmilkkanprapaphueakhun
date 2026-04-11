@@ -52,9 +52,9 @@ const PerformanceBox = ({
           <div className="inline-block mb-3 px-4 py-1.5 rounded-full bg-blue-100/50 text-blue-800 text-sm font-medium">
             Project Gallery
           </div>
-          <h3 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-8">
+          <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-8">
             ผลงานของเรา
-          </h3>
+          </h2>
           {mainmsg && (
             <Button
               className={`rounded-full px-8 py-5 text-base shadow-lg hover:shadow-xl transition-all hover:scale-105 bg-blue-800 hover:bg-blue-700 text-white min-w-[200px] font-medium ${pops || ''}`}

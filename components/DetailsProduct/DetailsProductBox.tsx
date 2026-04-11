@@ -45,10 +45,10 @@ const DetailsProductBox = () => {
         </div>
 
         <div className="space-y-6">
-          <h3 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight px-4">
+          <h2 className="text-3xl md:text-5xl font-black text-slate-900 leading-tight tracking-tight px-4">
             รับซ่อมประปา หาจุดรั่ว <br className="hidden md:block" />
             <span className="text-blue-600">ครบจบในที่เดียว</span>
-          </h3>
+          </h2>
 
           <div className="w-16 h-1 bg-blue-200 mx-auto rounded-full"></div>
 

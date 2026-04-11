@@ -48,7 +48,7 @@ export const ContactIcon = ({
       rel="noopener noreferrer"
       className={cn(
         "group flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-6 rounded-2xl md:rounded-[2rem] transition-all duration-500 h-full w-full border backdrop-blur-3xl shadow-xl",
-        classtype || "bg-slate-900 border-white/10 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:shadow-2xl hover:bg-slate-800/90 hover:-translate-y-2 hover:scale-[1.03]"
+        classtype || "bg-slate-900 text-white border-white/10 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:shadow-2xl hover:bg-slate-800/90 hover:-translate-y-2 hover:scale-[1.03]"
       )}
     >
       <div className={cn(

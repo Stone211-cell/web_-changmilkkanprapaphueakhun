@@ -16,16 +16,20 @@ export const metadataBase = new URL("https://xn--12cli4ea7apbo8ioaeft01a.com/");
 
 export const metadata: Metadata = {
   title:
-    "รับซ่อมประปาท่อน้ำ-งานรั่วซึมทุกประเภท | รับซ่อมท่อประปารั่ว | ช่างมิลการประปา",
+    "ช่างมิลการประปา | รับซ่อมประปา หาจุดรั่ว กทม. และปริมณฑล 24 ชม.",
   description:
-    "ช่างซ่อมประปากรุงเทพ-ปริมณฑล รับซ่อมประปา หาจุดรั่ว เดินท่อ-ติดตั้งประปา รับซ่อมท่อทุกประเภทครบจบในที่เดียวบริการรับซ่อมประปา ",
+    "ช่างมิลการประปา บริการรับซ่อมประปา หาจุดรั่ว เดินท่อประปา ติดตั้งปั๊มน้ำ แท็งก์น้ำ และเปลี่ยนสุขภัณฑ์ ครบวงจร โดยทีมช่างมืออาชีพ ประเมินหน้างานฟรี ทั่วกรุงเทพฯ-ปริมณฑล",
   keywords: [
-    "ซ่อมประปากรุงเทพ",
-    "ซ่อมท่อน้ำ",
-    "กรุงเทพ",
-    "น้ำไม่ไหล",
-    "ท่อน้ำรั่ว",
+    "ช่างประปา",
+    "รับซ่อมประปา",
+    "หาจุดรั่ว",
+    "ซ่อมท่อรั่ว",
+    "ช่างประปา กทม",
+    "ซ่อมปั๊มน้ำ",
+    "ติดตั้งถังน้ำ",
+    "เดินท่อประปา",
     "ช่างประปาใกล้ฉัน",
+    "ช่างประปา 24 ชั่วโมง",
   ],
 
   icons: {
@@ -36,9 +40,9 @@ export const metadata: Metadata = {
 
   openGraph: {
     title:
-      "รับซ่อมประปาท่อน้ำ-งานรั่วซึมทุกประเภท | รับซ่อมท่อประปารั่ว | ช่างมิลการประปา",
+      "ช่างมิลการประปา | รับซ่อมประปา หาจุดรั่ว กทม. และปริมณฑล 24 ชม.",
     description:
-      "ช่างซ่อมประปากรุงเทพ-ปริมณฑล รับซ่อมประปา หาจุดรั่ว เดินท่อ-ติดตั้งประปา รับซ่อมท่อทุกประเภทครบจบในที่เดียวบริการรับซ่อมประปา ",
+      "ช่างมิลการประปา บริการรับซ่อมประปา หาจุดรั่ว เดินท่อประปา ติดตั้งปั๊มน้ำ แท็งก์น้ำ และเปลี่ยนสุขภัณฑ์ ครบวงจร โดยทีมช่างมืออาชีพ ประเมินหน้างานฟรี ทั่วกรุงเทพฯ-ปริมณฑล",
     url: "https://xn--12cli4ea7apbo8ioaeft01a.com/",
     type: "website",
     images: [
@@ -51,9 +55,9 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "รับซ่อมประปาท่อน้ำ-งานรั่วซึมทุกประเภท | รับซ่อมท่อประปารั่ว | ช่างมิลการประปา",
+      "ช่างมิลการประปา | รับซ่อมประปา หาจุดรั่ว กทม. และปริมณฑล 24 ชม.",
     description:
-      "ช่างซ่อมประปากรุงเทพ-ปริมณฑล รับซ่อมประปา หาจุดรั่ว เดินท่อ-ติดตั้งประปา รับซ่อมท่อทุกประเภทครบจบในที่เดียวบริการรับซ่อมประปา ",
+      "ช่างมิลการประปา บริการรับซ่อมประปา หาจุดรั่ว เดินท่อประปา ติดตั้งปั๊มน้ำ แท็งก์น้ำ และเปลี่ยนสุขภัณฑ์ ครบวงจร โดยทีมช่างมืออาชีพ ประเมินหน้างานฟรี ทั่วกรุงเทพฯ-ปริมณฑล",
     images: ["/images/service/LOGO.jpg"],
   },
 
@@ -74,9 +78,53 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "ช่างมิลการประปา",
+    "image": "https://xn--12cli4ea7apbo8ioaeft01a.com/images/service/LOGO.jpg",
+    "@id": "https://xn--12cli4ea7apbo8ioaeft01a.com/",
+    "url": "https://xn--12cli4ea7apbo8ioaeft01a.com/",
+    "telephone": "0644088510",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "กรุงเทพและปริมณฑล",
+      "addressLocality": "Bangkok",
+      "addressRegion": "Bangkok",
+      "postalCode": "10000",
+      "addressCountry": "TH"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 13.7563,
+      "longitude": 100.5018
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "00:00",
+      "closes": "23:59"
+    },
+    "sameAs": [
+      "https://www.facebook.com/share/1SAASdGE8Y/?mibextid=wwXIfr"
+    ]
+  };
+
   return (
     <html lang="th" className={kanit.className}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Headeravbar />
         {children}
         <Footerbar />

@@ -55,7 +55,7 @@ const BannerImg = () => {
           <div className="hidden md:block absolute inset-0">
             <Image
               src="/images/banner/แบนเนอร์_ช่างประปา.png"
-              alt="พรีเมียม ประปา"
+              alt="ช่างมิลการประปา รับซ่อมประปา หาจุดรั่ว กทม. และปริมณฑล"
               className="w-full h-full object-cover"
               fill
               priority
@@ -64,7 +64,7 @@ const BannerImg = () => {
           <div className="md:hidden absolute inset-0">
             <Image
               src="/images/banner/มือถือ_แบนเนอร์_ช่างประปา.png"
-              alt="พรีเมียม ประปา มือถือ"
+              alt="ช่างมิลการประปา บริการซ่อมท่อประปารั่ว 24 ชั่วโมง"
               className="w-full h-full object-cover"
               fill
               priority
@@ -81,7 +81,8 @@ const BannerImg = () => {
           <div className="px-5 py-2 rounded-full border border-blue-500/20 bg-blue-500/5 backdrop-blur-3xl text-[9px] md:text-xs font-black tracking-[0.5em] uppercase text-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.1)]">
             Professional Plumbing Engineering
           </div>
-          <h1 className="text-5xl md:text-8xl lg:text-[8rem] font-black tracking-tighter leading-[0.9] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+          <h1 className="text-5xl md:text-8xl lg:text-[7rem] font-black tracking-tighter leading-[0.9] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+            <span className="text-xl md:text-4xl block mb-2 text-blue-400">รับซ่อมประปา หาจุดรั่ว</span>
             ช่างมิล <br className="md:hidden" />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-blue-200 to-white italic">ประปาเพื่อคุณ</span>
           </h1>
@@ -121,7 +122,7 @@ export const Bannerbg = ({ img, text, des }: { img: string; text?: string; des?:
       <div className="absolute inset-0 w-full h-full scale-105 group-hover:scale-100 transition-transform duration-1000">
         <Image
           src={img}
-          alt="ช่างมิลการประปา"
+          alt={`บริการ${text || 'ช่างประปา'} ช่างมิลการประปา`}
           className="object-cover"
           fill
         />
