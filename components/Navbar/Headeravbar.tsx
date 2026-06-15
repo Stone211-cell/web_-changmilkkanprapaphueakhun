@@ -16,7 +16,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { List } from "@/utils/menulist";
 
-const Headeravbar = () => {
+import { LayoutDashboard } from "lucide-react";
+
+const Headeravbar = ({ isAdmin }: { isAdmin?: boolean }) => {
   const navRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -70,6 +72,16 @@ const Headeravbar = () => {
               <span className="text-xs font-black text-white leading-none">064-408-8510</span>
             </div>
           </a>
+
+          {isAdmin && (
+            <Link
+              href="/admin"
+              className="hidden sm:flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-4 md:px-5 py-2 md:py-3 rounded-full text-xs font-black transition-all border border-slate-700 hover:border-slate-500 shadow-lg shadow-black/20"
+            >
+              <LayoutDashboard className="w-4 h-4" />
+              แดชบอร์ดแอดมิน
+            </Link>
+          )}
 
           <Link
             href="tel:0644088510"

@@ -35,8 +35,10 @@ const PerformanceShow = ({
     async function fetchPortfolios() {
       try {
         const data = await getPortfolios();
+        // กรองเอาเฉพาะอันที่ติ๊ก "แสดงหน้าหลัก" (featured === true)
+        const featuredData = data.filter((item: any) => item.featured === true);
         // แสดงแค่ 6 รายการบนหน้าหลัก
-        setPortfolios(data.slice(0, 6));
+        setPortfolios(featuredData.slice(0, 6));
       } catch {
         // fallback ถ้า database ยังไม่พร้อม — ใช้ข้อมูลเดิม
         const LINKIMG = "/images/performance";

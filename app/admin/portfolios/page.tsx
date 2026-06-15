@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { Plus, Edit3, Trash2, Briefcase, Star, Search } from "lucide-react";
+import { Plus, Edit3, Trash2, Briefcase, Search } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
 
 interface Portfolio {
   id: string;
@@ -136,9 +137,8 @@ export default function PortfoliosPage() {
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 {portfolio.featured && (
-                  <div className="absolute top-3 left-3 px-2 py-1 rounded-lg bg-amber-500/90 text-white text-[10px] font-bold flex items-center gap-1">
-                    <Star className="w-3 h-3" fill="currentColor" />
-                    แนะนำ
+                  <div className="absolute top-3 left-3 px-2 py-1 rounded-lg bg-blue-600/90 text-white text-[10px] font-bold flex items-center gap-1 shadow-lg">
+                    แสดงหน้าหลัก
                   </div>
                 )}
                 {portfolio.category && (
@@ -161,29 +161,19 @@ export default function PortfoliosPage() {
 
                 {/* Actions */}
                 <div className="flex items-center gap-2 pt-2 border-t border-white/5">
-                  <button
-                    onClick={() =>
-                      toggleFeatured(portfolio.id, portfolio.featured)
-                    }
-                    className={`p-2 rounded-lg transition-all ${
-                      portfolio.featured
-                        ? "text-amber-400 hover:bg-amber-500/10"
-                        : "text-slate-500 hover:bg-white/5"
-                    }`}
-                    title={
-                      portfolio.featured
-                        ? "ยกเลิกแนะนำ"
-                        : "ตั้งเป็นผลงานแนะนำ"
-                    }
-                  >
-                    <Star
-                      className="w-4 h-4"
-                      fill={portfolio.featured ? "currentColor" : "none"}
+                  <div className="flex items-center gap-2">
+                    <Switch
+                      checked={portfolio.featured}
+                      onCheckedChange={() => toggleFeatured(portfolio.id, portfolio.featured)}
                     />
-                  </button>
+                    <span className="text-xs text-slate-400 font-medium">
+                      {portfolio.featured ? "แสดงที่หน้าหลัก" : "ไม่แสดง"}
+                    </span>
+                  </div>
+
                   <Link
-                    href={`/admin/articles/${portfolio.id}/edit`}
-                    className="p-2 rounded-lg text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 transition-all"
+                    href={`/admin/portfolios/${portfolio.id}/edit`}
+                    className="p-2 rounded-lg text-slate-400 hover:text-blue-400 hover:bg-blue-500/10 transition-all ml-auto"
                   >
                     <Edit3 className="w-4 h-4" />
                   </Link>

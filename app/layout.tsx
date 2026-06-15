@@ -6,6 +6,7 @@ import "./globals.css";
 import Headeravbar from "@/components/Navbar/Headeravbar";
 import { Kanit } from "next/font/google";
 import Footerbar from "@/components/Footer/Footerbar";
+import { checkIsAdmin } from "@/lib/admin";
 
 const kanit = Kanit({
   subsets: ["latin", "thai"],
@@ -127,7 +128,7 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
           />
-          <Headeravbar />
+          <Headeravbar isAdmin={await checkIsAdmin()} />
           {children}
           <Footerbar />
         </body>
