@@ -19,21 +19,9 @@ import { List } from "@/utils/menulist";
 import { LayoutDashboard } from "lucide-react";
 
 const Headeravbar = ({ isAdmin }: { isAdmin?: boolean }) => {
-  const navRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    gsap.from(navRef.current, {
-      y: -50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    });
-  }, { scope: navRef });
-
   return (
     <header
-      ref={navRef}
-      className="sticky top-0 z-50 w-full border-b border-white/5 bg-slate-950/90 backdrop-blur-xl transition-all duration-500 shadow-2xl"
+      className="sticky top-0 z-50 w-full border-b border-white/5 bg-slate-950/90 backdrop-blur-xl shadow-2xl animate-in fade-in slide-in-from-top-8 duration-700"
     >
       <div className="container mx-auto flex h-16 md:h-20 items-center justify-between px-4 sm:px-6 md:px-8">
         {/* Logo Section */}
