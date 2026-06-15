@@ -2,9 +2,10 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import fs from "fs";
 import path from "path";
-import PerformanceContainer from "./PerformanceContainer";
+import { prisma } from "@/lib/prisma";
+import PerformanceFilterable from "./PerformanceFilterable";
 
-const PerformanceBox = ({
+const PerformanceBox = async ({
   mainmsg,
   pops,
 }: {
@@ -13,48 +14,94 @@ const PerformanceBox = ({
 }) => {
   const LINKIMG = "/images/performance";
 
+  let portfolioItems: {
+    id: string;
+    image: string;
+    name: string;
+    categoryId?: string | null;
+    categoryName?: string | null;
+  }[] = [];
 
-  const dir = path.join(process.cwd(), "public/images/performance");
+  let categories: { id: string; name: string }[] = [];
 
-  // โหลดไฟล์ทั้งหมด + เวลาแก้ไข
-  const allImagesWithTime = fs
-    .readdirSync(dir)
-    .filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
-    .map((file) => {
-      const filePath = path.join(dir, file);
-      const stats = fs.statSync(filePath);
-      return { file, mtime: stats.mtime };
-    })
-    .sort((a, b) => b.mtime.getTime() - a.mtime.getTime()); // ใหม่ไปเก่า
+  try {
+    // ดึงหมวดหมู่ผลงาน
+    categories = await prisma.category.findMany({
+      where: { type: "PORTFOLIO" },
+      select: { id: true, name: true },
+      orderBy: { createdAt: "asc" },
+    });
+
+    const dbPortfolios = await prisma.portfolio.findMany({
+      include: { category: true },
+      orderBy: [{ displayOrder: "asc" }, { createdAt: "desc" }],
+    });
+
+    if (dbPortfolios.length > 0) {
+      portfolioItems = dbPortfolios.map((p) => ({
+        id: p.id,
+        image: p.image,
+        name: p.title,
+        categoryId: p.categoryId,
+        categoryName: p.category?.name,
+      }));
+    } else {
+      throw new Error("No portfolios in DB, fallback to filesystem");
+    }
+  } catch {
+    // Fallback: อ่านจาก filesystem เหมือนเดิม
+    try {
+      const fsPromises = require("fs").promises;
+      const dir = path.join(process.cwd(), "public/images/performance");
+      
+      const files = await fsPromises.readdir(dir);
+      const imageFiles = files.filter((file: string) => /\.(jpe?g|png|webp)$/i.test(file));
+      
+      const statsPromises = imageFiles.map(async (file: string) => {
+        const filePath = path.join(dir, file);
+        const stats = await fsPromises.stat(filePath);
+        return { file, mtime: stats.mtime };
+      });
+
+      const allImagesWithTime = (await Promise.all(statsPromises))
+        .sort((a, b) => b.mtime.getTime() - a.mtime.getTime());
+
+      portfolioItems = allImagesWithTime.map(({ file }, index) => ({
+        id: `fallback-${index}`,
+        image: `${LINKIMG}/${file}`,
+        name: "ซ่อมด่วน 24 ชั่วโมง ติดต่อช่างมิล",
+        categoryId: null,
+        categoryName: null,
+      }));
+    } catch {
+      portfolioItems = [];
+    }
+  }
+
   return (
     <div>
-      {" "}
       <section>
-        <div>
-          <h3 className="text-2xl text-center mb-2 border-b-red-800">
-            ผลงานของเรา
-
+        <div className="flex flex-col items-center mb-8 px-4">
+          <div className="inline-block mb-3 px-4 py-1.5 rounded-full bg-blue-100/50 text-blue-800 text-sm font-medium">
+            All Projects
+          </div>
+          <h3 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-6">
+            ผลงานทั้งหมดของเรา
           </h3>
           <Button
-            className={` text-sm ml-15 bg-blue-800 text-white transition-transform duration-200 ease-in-out hover:scale-110 flex justify-center rounded-md`}
-          >
-            <Link href="/performance">{mainmsg}</Link>
-          </Button>
-          <Button
-            className={`${pops} text-sm ml-15 bg-blue-800 text-white transition-transform duration-200 ease-in-out hover:scale-110 rounded-md`}
+            className={`rounded-full px-8 py-5 text-base shadow-lg hover:shadow-xl transition-all hover:scale-105 bg-blue-800 hover:bg-blue-700 text-white min-w-[200px] font-medium ${pops || ""}`}
+            asChild
           >
             <Link href="/performance">{mainmsg}</Link>
           </Button>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-6 px-10">
-          {allImagesWithTime.map(({ file }, i) => (
-            <PerformanceContainer
-              key={`atmosphere-${i}`}
-              image={`${LINKIMG}/${file}`}
-              name={`ซ่อมด่วน 24 ชั่วโมง ติดต่อช่างมิล`}
-            />
-          ))}
-        </div>
+        
+        {/* ใช้ Component ฝั่ง Client สำหรับการค้นหาและกรอง */}
+        <PerformanceFilterable 
+          items={portfolioItems} 
+          categories={categories} 
+        />
+        
       </section>
     </div>
   );

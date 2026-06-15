@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import "@/lib/fontawesome";
 import "./globals.css";
@@ -119,16 +120,18 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="th" className={kanit.className}>
-      <body>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <Headeravbar />
-        {children}
-        <Footerbar />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="th" className={kanit.className}>
+        <body>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          />
+          <Headeravbar />
+          {children}
+          <Footerbar />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

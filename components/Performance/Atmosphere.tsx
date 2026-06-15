@@ -1,22 +1,29 @@
-import fs from "fs";
+import fs from "fs/promises";
 import path from "path";
 import PerformanceContainer from "./PerformanceContainer";
 
 const LINKIMG = "/images/atmosphere";
 
-export default function AtmospherePage() {
+export default async function AtmospherePage() {
   const dir = path.join(process.cwd(), "public/images/atmosphere");
 
-  // โหลดไฟล์ทั้งหมด + เวลาแก้ไข
-  const allImagesWithTime = fs
-    .readdirSync(dir)
-    .filter((file) => /\.(jpe?g|png|webp)$/i.test(file))
-    .map((file) => {
+  let allImagesWithTime: { file: string; mtime: Date }[] = [];
+
+  try {
+    const files = await fs.readdir(dir);
+    const imageFiles = files.filter((file) => /\.(jpe?g|png|webp)$/i.test(file));
+    
+    const statsPromises = imageFiles.map(async (file) => {
       const filePath = path.join(dir, file);
-      const stats = fs.statSync(filePath);
+      const stats = await fs.stat(filePath);
       return { file, mtime: stats.mtime };
-    })
-    .sort((a, b) => b.mtime.getTime() - a.mtime.getTime()); // ใหม่ไปเก่า
+    });
+
+    allImagesWithTime = (await Promise.all(statsPromises))
+      .sort((a, b) => b.mtime.getTime() - a.mtime.getTime()); // ใหม่ไปเก่า
+  } catch (error) {
+    console.error("Failed to read atmosphere directory:", error);
+  }
 
   return (
     <div className="py-24 bg-slate-50">

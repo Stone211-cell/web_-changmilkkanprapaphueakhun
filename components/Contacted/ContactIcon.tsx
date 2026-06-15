@@ -64,7 +64,7 @@ export const ContactIcon = ({
 
       <div className={cn(
         "flex flex-col items-center sm:items-start text-center sm:text-left min-w-0 transition-all duration-500",
-        pops === 'hidden' ? 'hidden' : 'flex'
+        pops === 'hidden' ? 'hidden sm:flex' : 'flex'
       )}>
         <span className={cn(
           "text-sm md:text-lg font-black leading-tight mb-1 whitespace-nowrap",

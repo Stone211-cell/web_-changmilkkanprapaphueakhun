@@ -1,27 +1,63 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import PerformanceContainer from "./PerformanceContainer";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getPortfolios } from "@/services/api";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const PerformanceBox = ({
+interface PortfolioItem {
+  id: string;
+  title: string;
+  description: string | null;
+  image: string;
+}
+
+const PerformanceShow = ({
   mainmsg,
   pops,
 }: {
   mainmsg?: string;
   pops?: string;
 }) => {
-  const LINKIMG = "/images/performance";
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
+  const [portfolios, setPortfolios] = useState<PortfolioItem[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  // ดึงข้อมูลจาก API แบบแยกไฟล์ให้อ่านง่าย
+  useEffect(() => {
+    async function fetchPortfolios() {
+      try {
+        const data = await getPortfolios();
+        // แสดงแค่ 6 รายการบนหน้าหลัก
+        setPortfolios(data.slice(0, 6));
+      } catch {
+        // fallback ถ้า database ยังไม่พร้อม — ใช้ข้อมูลเดิม
+        const LINKIMG = "/images/performance";
+        setPortfolios([
+          { id: "1", title: "เปลี่ยนท่อ ติดตั้งซิงค์ล้างหน้า", description: null, image: LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg" },
+          { id: "2", title: "เดินท่อใหม่ เปลี่ยนระบบจากใต้ดินย้ายมาบนดิน", description: null, image: LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_2.jpg" },
+          { id: "3", title: "รับช่อมปั้มน้ำดังปั้มน้ำทำงานตลอดเวลา", description: null, image: LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_3.jpg" },
+          { id: "4", title: "รับติดตั้งปั้มน้ำตามที่ลูกค้าต้องการ", description: null, image: LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_4.jpg" },
+          { id: "5", title: "รับช่อมน้ำหยดน้ำรั่วน้ำชึม และติดตั้งสุขภัณฑ์ไหม่", description: null, image: LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_5.jpg" },
+          { id: "6", title: "รับเดินระบบท่อประปาไหม่ครบวงจร", description: null, image: LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_6.jpg" },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPortfolios();
+  }, []);
 
   useGSAP(() => {
+    if (loading) return;
+    
     gsap.from(titleRef.current, {
       y: 30,
       opacity: 0,
@@ -43,7 +79,7 @@ const PerformanceBox = ({
         start: "top 80%",
       },
     });
-  }, { scope: containerRef });
+  }, { scope: containerRef, dependencies: [loading] });
 
   return (
     <div className="py-16 md:py-24 bg-slate-50/50 w-full relative overflow-hidden">
@@ -65,54 +101,30 @@ const PerformanceBox = ({
           )}
         </div>
 
-        <div
-          ref={containerRef}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 px-4 md:px-8 lg:px-12"
-        >
-          <div className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl overflow-hidden bg-white">
-            <PerformanceContainer
-              image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}
-              name="เปลี่ยนท่อ ติดตั้งซิงค์ล้างหน้า"
-            />
+        {loading ? (
+          <div className="flex justify-center py-12">
+            <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
           </div>
-
-          <div className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl overflow-hidden bg-white">
-            <PerformanceContainer
-              image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_2.jpg"}
-              name="เดินท่อใหม่ เปลี่ยนระบบจากใต้ดินย้ายมาบนดิน"
-            />
+        ) : (
+          <div
+            ref={containerRef}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 px-4 md:px-8 lg:px-12"
+          >
+            {portfolios.map((item) => (
+              <div
+                key={item.id}
+                className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl overflow-hidden bg-white"
+              >
+                <PerformanceContainer
+                  image={item.image}
+                  name={item.title}
+                />
+              </div>
+            ))}
           </div>
-
-          <div className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl overflow-hidden bg-white">
-            <PerformanceContainer
-              image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_3.jpg"}
-              name="รับช่อมปั้มน้ำดังปั้มน้ำทำงานตลอดเวลา"
-            />
-          </div>
-
-          <div className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl overflow-hidden bg-white">
-            <PerformanceContainer
-              image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_4.jpg"}
-              name="รับติดตั้งปั้มน้ำตามที่ลูกค้าต้องการ"
-            />
-          </div>
-
-          <div className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl overflow-hidden bg-white">
-            <PerformanceContainer
-              image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_5.jpg"}
-              name="รับช่อมน้ำหยดน้ำรั่วน้ำชึม และติดตั้งสุขภัณฑ์ไหม่"
-            />
-          </div>
-
-          <div className="transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl rounded-2xl overflow-hidden bg-white">
-            <PerformanceContainer
-              image={LINKIMG + "/LINE_ALBUM_รูปตอนทำงาน_250618_6.jpg"}
-              name="รับเดินระบบท่อประปาไหม่ครบวงจร"
-            />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
 };
-export default PerformanceBox;
+export default PerformanceShow;

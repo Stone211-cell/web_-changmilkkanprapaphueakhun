@@ -1,4 +1,4 @@
-import { Bannerbg } from "@/components/Banner/BannerImg";
+import Bannerbg from "@/components/Banner/Bannerbg";
 import { CardHoverEffect } from "@/components/Card/CardHoverEffect";
 import ContactedBox from "@/components/Contacted/ContactedBox";
 import PerformanceShow from "@/components/Performance/PerformanceShow";

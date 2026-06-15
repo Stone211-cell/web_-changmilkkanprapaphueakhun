@@ -1,3 +1,4 @@
+//สวัสดี
 import BannerImg from "@/components/Banner/BannerImg";
 
 import PerformanceShow from "@/components/Performance/PerformanceShow";
@@ -25,7 +26,14 @@ const page = () => {
           </div>
         </section>
 
-        {/* โชว์ผลงาน - Professional Gallery */}
+        {/* โชว์ผลงาน - Professional Gallery 
+        
+        
+        อ่อสำหรับทความและประวัติการทำงาน เพิ่ม ประเภทหน่อยนะ แล้วก็ทำระบบ ให้แอดมินเพิ่มประเภทเองได้ด้วย แล้วหน้าโชว์ผลงาน ให้มีtoggle 
+        หรือช่องค้นหาแยกประเภทแยกตามงานด้วยนะ ใช้ shadcn ตกแต่งให้สวยงาม ทันมัยเหมือนเว็บฝรั่งเว็บไอโฟน แล้วก็ระบบแอดกมินให้ใช้ clerk ตัดสินนะว่าเป็นอดมนิรึป่าว โดยต้อวมี 
+        IsAdmis ใน privatedata และช่วยสอนกา่รทำ bucket suprabase หน่อยทำไง 
+        
+        */}
         <section>
           <PerformanceShow mainmsg="ดูผลงานทั้งหมดของเรา" />
         </section>

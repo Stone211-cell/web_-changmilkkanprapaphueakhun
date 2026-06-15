@@ -1,5 +1,6 @@
 import ContactedBox from "@/components/Contacted/ContactedBox";
-import { Bannerbg } from "@/components/Banner/BannerImg";
+import Mapcontactdetail from "@/components/Mapdetail/Mapcontactdetail";
+import Bannerbg from "@/components/Banner/Bannerbg";
 
 const page = () => {
   return (
