@@ -8,6 +8,30 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  word-break: break-word;
+  padding-env: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+/* Ensure text never overflows on mobile */
+h1, h2, h3, h4, h5, h6, p, span, a, li {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Improve tap targets on mobile */
+@media (max-width: 640px) {
+  a, button {
+    min-height: 44px;
+  }
 }
 
 

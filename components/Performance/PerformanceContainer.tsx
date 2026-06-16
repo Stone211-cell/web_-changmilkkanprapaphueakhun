@@ -9,7 +9,7 @@ const PerformanceContainer = ({
   description?: string;
 }) => {
   return (
-    <article className="group relative bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
+    <article className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
           src={image}
@@ -21,17 +21,17 @@ const PerformanceContainer = ({
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </div>
 
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="text-lg font-bold text-slate-800 leading-tight mb-2 group-hover:text-blue-600 transition-colors">
+      <div className="p-3.5 sm:p-4 md:p-5 flex flex-col flex-grow">
+        <h3 className="text-sm sm:text-base md:text-lg font-bold text-slate-800 leading-tight mb-1.5 sm:mb-2 group-hover:text-blue-600 transition-colors">
           {name}
         </h3>
         <div className="mt-auto flex items-center justify-between">
-          <p className="text-sm font-bold text-blue-600">ช่างมิล ประปา</p>
-          <p className="text-xs font-medium text-slate-400">064-408-8510</p>
+          <p className="text-xs sm:text-sm font-bold text-blue-600">ช่างมิล ประปา</p>
+          <p className="text-[10px] sm:text-xs font-medium text-slate-400">064-408-8510</p>
         </div>
       </div>
 
-      <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-blue-600/90 text-[10px] font-bold text-white uppercase tracking-widest backdrop-blur-sm shadow-lg">
+      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 px-2 sm:px-3 py-0.5 sm:py-1 rounded-full bg-blue-600/90 text-[8px] sm:text-[10px] font-bold text-white uppercase tracking-widest backdrop-blur-sm shadow-lg">
         Our Portfolio
       </div>
     </article>

@@ -5,6 +5,16 @@ import { checkIsAdmin } from "@/lib/admin";
 // GET — ดึงผลงานทั้งหมด
 export async function GET() {
   try {
+    // Auto-migration: ย้ายผลงานที่มีลำดับการแสดงเป็น 0 ไปที่ 1000 เพื่อความสะดวกในการจัดเรียง
+    try {
+      await prisma.portfolio.updateMany({
+        where: { displayOrder: 0 },
+        data: { displayOrder: 1000 },
+      });
+    } catch (migError) {
+      console.error("Auto-migration displayOrder failed:", migError);
+    }
+
     const portfolios = await prisma.portfolio.findMany({
       include: {
         category: true, // ดึงข้อมูลหมวดหมู่มาด้วย
@@ -48,7 +58,7 @@ export async function POST(req: NextRequest) {
         image,
         categoryId: categoryId || null,
         featured: featured ?? false,
-        displayOrder: displayOrder ?? 0,
+        displayOrder: displayOrder ?? 1000,
       },
     });
 

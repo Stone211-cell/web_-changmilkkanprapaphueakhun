@@ -5,15 +5,15 @@ import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 
 export function Review() {
   return (
-    <div className="py-24 bg-slate-50 relative overflow-hidden flex flex-col items-center justify-center">
-      <div className="mb-16 text-center px-4 relative z-10">
-        <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-blue-100 text-blue-700 text-sm font-bold tracking-wider uppercase">
+    <div className="py-12 sm:py-16 md:py-24 bg-slate-50 relative overflow-hidden flex flex-col items-center justify-center">
+      <div className="mb-8 sm:mb-12 md:mb-16 text-center px-4 relative z-10">
+        <div className="inline-block mb-3 sm:mb-4 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-blue-100 text-blue-700 text-xs sm:text-sm font-bold tracking-wider uppercase">
           คำยืนยันจากลูกค้า
         </div>
-        <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-6 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-slate-900 mb-4 sm:mb-6 tracking-tight">
           รีวิวความประทับใจ <span className="text-blue-600 italic">จากผู้ใช้งานจริง</span>
         </h2>
-        <p className="text-slate-500 max-w-2xl mx-auto text-lg">
+        <p className="text-slate-500 max-w-2xl mx-auto text-sm sm:text-base md:text-lg">
           เรามุ่งมั่นให้บริการด้วยมาตรฐานสูงสุด เพื่อให้ลูกค้าพึงพอใจในทุกผลงาน
         </p>
       </div>

@@ -9,7 +9,7 @@ const supabaseKey = (typeof window === "undefined" && process.env.SUPABASE_SERVI
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Bucket name สำหรับเก็บรูปภาพ
-export const STORAGE_BUCKET = "public";
+export const STORAGE_BUCKET = process.env.NEXT_PUBLIC_SUPABASE_BUCKET || "picture";
 
 /**
  * อัปโหลดไฟล์ไป Supabase Storage

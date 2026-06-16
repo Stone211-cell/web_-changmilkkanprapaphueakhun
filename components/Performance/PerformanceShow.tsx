@@ -84,13 +84,13 @@ const PerformanceShow = ({
   }, { scope: containerRef, dependencies: [loading] });
 
   return (
-    <div className="py-16 md:py-24 bg-slate-50/50 w-full relative overflow-hidden">
+    <div className="py-10 sm:py-12 md:py-16 lg:py-24 bg-slate-50/50 w-full relative overflow-hidden">
       <div className="max-w-7xl mx-auto w-full">
-        <div ref={titleRef} className="flex flex-col items-center mb-12 px-4">
-          <div className="inline-block mb-3 px-4 py-1.5 rounded-full bg-blue-100/50 text-blue-800 text-sm font-medium">
+        <div ref={titleRef} className="flex flex-col items-center mb-8 sm:mb-10 md:mb-12 px-3 sm:px-4">
+          <div className="inline-block mb-2 sm:mb-3 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-blue-100/50 text-blue-800 text-xs sm:text-sm font-medium">
             Project Gallery
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold text-center text-foreground mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-foreground mb-4 sm:mb-6 md:mb-8">
             ผลงานของเรา
           </h2>
           {mainmsg && (
@@ -110,7 +110,7 @@ const PerformanceShow = ({
         ) : (
           <div
             ref={containerRef}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-6 px-4 md:px-8 lg:px-12"
+            className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 mt-4 sm:mt-6 px-3 sm:px-4 md:px-8 lg:px-12"
           >
             {portfolios.map((item) => (
               <div

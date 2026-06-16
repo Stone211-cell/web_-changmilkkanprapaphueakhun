@@ -1,12 +1,27 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useState, useRef, use } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { ArrowLeft, Upload, Save, Loader2 } from "lucide-react";
 import Link from "next/link";
 
-export default function NewPortfolioPage() {
+interface Portfolio {
+  id: string;
+  title: string;
+  description: string | null;
+  image: string;
+  categoryId: string | null;
+  featured: boolean;
+  displayOrder: number;
+}
+
+export default function EditPortfolioPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = use(params);
   const router = useRouter();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -14,31 +29,50 @@ export default function NewPortfolioPage() {
     title: "",
     description: "",
     categoryId: "",
+    featured: false,
     displayOrder: 1000,
   });
   const [image, setImage] = useState("");
   const [categories, setCategories] = useState<{ id: string; name: string }[]>([]);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    async function fetchCats() {
+    async function loadData() {
       try {
-        const res = await axios.get("/api/categories?type=PORTFOLIO");
-        setCategories(res.data);
+        const [portfolioRes, catsRes] = await Promise.all([
+          axios.get(`/api/portfolios/${id}`),
+          axios.get("/api/categories?type=PORTFOLIO"),
+        ]);
+        
+        const portfolio: Portfolio = portfolioRes.data;
+        setCategories(catsRes.data);
+        setForm({
+          title: portfolio.title,
+          description: portfolio.description || "",
+          categoryId: portfolio.categoryId || "",
+          featured: portfolio.featured,
+          displayOrder: portfolio.displayOrder,
+        });
+        setImage(portfolio.image);
       } catch (err) {
-        console.error("Failed to fetch categories:", err);
+        console.error("Failed to load portfolio:", err);
+        setError("ไม่สามารถโหลดข้อมูลผลงานได้");
+      } finally {
+        setLoading(false);
       }
     }
-    fetchCats();
-  }, []);
+    loadData();
+  }, [id]);
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setUploading(true);
+    setError("");
     try {
       const formData = new FormData();
       formData.append("file", file);
@@ -46,7 +80,8 @@ export default function NewPortfolioPage() {
 
       const res = await axios.post("/api/upload", formData);
       setImage(res.data.url);
-    } catch {
+    } catch (err) {
+      console.error("Upload error:", err);
       setError("อัปโหลดรูปภาพไม่สำเร็จ");
     } finally {
       setUploading(false);
@@ -68,19 +103,26 @@ export default function NewPortfolioPage() {
 
     setSaving(true);
     try {
-      await axios.post("/api/portfolios", {
+      await axios.put(`/api/portfolios/${id}`, {
         ...form,
         image,
       });
       router.push("/admin/portfolios");
-    } catch {
-      setError("บันทึกผลงานไม่สำเร็จ");
+    } catch (err) {
+      console.error("Failed to update portfolio:", err);
+      setError("บันทึกข้อมูลผลงานไม่สำเร็จ");
     } finally {
       setSaving(false);
     }
   };
 
-
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center py-20">
+        <div className="w-8 h-8 border-2 border-emerald-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-2xl">
@@ -94,10 +136,10 @@ export default function NewPortfolioPage() {
         </Link>
         <div>
           <h1 className="text-3xl font-black text-white tracking-tight">
-            เพิ่มผลงานใหม่
+            แก้ไขผลงาน
           </h1>
           <p className="text-slate-400 mt-1 text-sm">
-            เพิ่มประวัติการทำงานเป็นการ์ดแสดงในหน้าผลงาน
+            แก้ไขรายละเอียดผลงานที่มีอยู่ในระบบ
           </p>
         </div>
       </div>
@@ -124,13 +166,10 @@ export default function NewPortfolioPage() {
                 className="w-full h-64 object-cover rounded-xl"
               />
               <button
-                onClick={() => {
-                  setImage("");
-                  if (fileInputRef.current) fileInputRef.current.value = "";
-                }}
+                onClick={() => fileInputRef.current?.click()}
                 className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm"
               >
-                คลิกเพื่อเปลี่ยน
+                คลิกเพื่อเปลี่ยนรูปภาพ
               </button>
             </div>
           ) : (
@@ -163,7 +202,7 @@ export default function NewPortfolioPage() {
           />
         </div>
 
-        {/* Title & Category */}
+        {/* Title & Category & Display Order */}
         <div className="bg-slate-900 rounded-2xl border border-white/5 p-6 space-y-4">
           <div>
             <label className="block text-sm font-bold text-slate-300 mb-2">
@@ -219,6 +258,21 @@ export default function NewPortfolioPage() {
               ตัวเลขน้อย = แสดงก่อน (เช่น 1, 2, 3...) ค่าเริ่มต้นคือ 1000 (แสดงหลังสุด)
             </p>
           </div>
+
+          <div className="flex items-center gap-3 pt-2">
+            <input
+              type="checkbox"
+              id="featured"
+              checked={form.featured}
+              onChange={(e) =>
+                setForm((prev) => ({ ...prev, featured: e.target.checked }))
+              }
+              className="w-4 h-4 text-emerald-600 bg-slate-800 border-white/10 rounded focus:ring-emerald-500/20"
+            />
+            <label htmlFor="featured" className="text-sm font-medium text-slate-300 select-none cursor-pointer">
+              แสดงที่หน้าหลัก (Featured Project)
+            </label>
+          </div>
         </div>
 
         {/* Description */}
@@ -248,7 +302,7 @@ export default function NewPortfolioPage() {
           ) : (
             <Save className="w-4 h-4" />
           )}
-          บันทึกผลงาน
+          บันทึกการแก้ไข
         </button>
       </div>
     </div>

@@ -39,14 +39,14 @@ export default async function BlogPage() {
         des="รวบรวมเทคนิค วิธีดูแลรักษาระบบประปา และสาระน่ารู้จากช่างประปามืออาชีพ"
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 mt-10 sm:mt-14 md:mt-20">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
           <div className="max-w-3xl">
-            <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-4 sm:mb-6 tracking-tight">
               เจาะลึกทุกเรื่อง{" "}
               <span className="text-blue-600">งานประปา</span>
             </h2>
-            <p className="text-slate-600 text-lg md:text-xl leading-relaxed">
+            <p className="text-slate-600 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
               อัปเดตสาระน่ารู้ล่าสุด โดยช่างผู้ชำนาญการ
               เพื่อให้บ้านของคุณปลอดภัยจากปัญหาน้ำรั่วซึม
             </p>

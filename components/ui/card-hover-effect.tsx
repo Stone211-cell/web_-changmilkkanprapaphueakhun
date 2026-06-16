@@ -85,12 +85,12 @@ export const Card = ({
   return (
     <div
       className={cn(
-        "rounded-[2.5rem] h-full w-full p-4 overflow-hidden transition-all duration-700 relative z-20 layout border bg-white border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
+        "rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] h-full w-full p-3 sm:p-4 overflow-hidden transition-all duration-700 relative z-20 layout border bg-white border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]",
         className
       )}
     >
       <div className="relative z-50">
-        <div className="p-2 md:p-4">{children}</div>
+        <div className="p-1.5 sm:p-2 md:p-4">{children}</div>
       </div>
     </div>
   );
@@ -104,7 +104,7 @@ export const CardPicture = ({
   src: string;
 }) => {
   return (
-    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.5rem] md:rounded-[2rem] mb-8 border border-slate-100/50 shadow-lg group-hover:shadow-blue-500/20 transition-all duration-700">
+    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl sm:rounded-[1.5rem] md:rounded-[2rem] mb-4 sm:mb-6 md:mb-8 border border-slate-100/50 shadow-lg group-hover:shadow-blue-500/20 transition-all duration-700">
       <Image
         className={cn("object-cover transition-transform duration-1000 group-hover:scale-110", className)}
         src={src}
@@ -127,7 +127,7 @@ export const CardTitle = ({
 }) => {
   return (
     <h4 className={cn(
-      "text-2xl md:text-3xl font-black tracking-tighter transition-all duration-500 leading-tight text-slate-800 group-hover:text-blue-600",
+      "text-lg sm:text-xl md:text-2xl lg:text-3xl font-black tracking-tighter transition-all duration-500 leading-tight text-slate-800 group-hover:text-blue-600",
       className
     )}>
       {children}
@@ -145,7 +145,7 @@ export const CardDescription = ({
   return (
     <p
       className={cn(
-        "mt-4 font-medium tracking-wide leading-relaxed text-sm md:text-base transition-all duration-500 text-slate-500 group-hover:text-slate-700",
+        "mt-2 sm:mt-4 font-medium tracking-wide leading-relaxed text-xs sm:text-sm md:text-base transition-all duration-500 text-slate-500 group-hover:text-slate-700",
         className
       )}
     >

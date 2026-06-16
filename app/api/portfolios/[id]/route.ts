@@ -2,6 +2,38 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { checkIsAdmin } from "@/lib/admin";
 
+// GET — ดึงผลงานชิ้นเดี่ยว (เฉพาะแอดมิน หรือใช้งานทั่วไปในระบบหลังบ้าน)
+export async function GET(
+  req: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await params;
+
+    const portfolio = await prisma.portfolio.findUnique({
+      where: { id },
+      include: {
+        category: true,
+      },
+    });
+
+    if (!portfolio) {
+      return NextResponse.json(
+        { error: "Portfolio not found" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(portfolio);
+  } catch (error) {
+    console.error("Error fetching portfolio:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch portfolio" },
+      { status: 500 }
+    );
+  }
+}
+
 // PUT — อัปเดตผลงาน (เฉพาะแอดมิน)
 export async function PUT(
   req: NextRequest,

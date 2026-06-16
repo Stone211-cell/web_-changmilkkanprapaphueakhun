@@ -11,7 +11,7 @@ interface Portfolio {
   title: string;
   description: string | null;
   image: string;
-  category: string | null;
+  category: { id: string; name: string } | null;
   featured: boolean;
   displayOrder: number;
   createdAt: string;
@@ -69,7 +69,7 @@ export default function PortfoliosPage() {
   const filtered = portfolios.filter(
     (p) =>
       p.title.toLowerCase().includes(search.toLowerCase()) ||
-      (p.category || "").toLowerCase().includes(search.toLowerCase())
+      (p.category?.name || "").toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -143,7 +143,7 @@ export default function PortfoliosPage() {
                 )}
                 {portfolio.category && (
                   <div className="absolute top-3 right-3 px-2 py-1 rounded-lg bg-black/50 backdrop-blur-sm text-white text-[10px] font-bold">
-                    {portfolio.category}
+                    {portfolio.category.name}
                   </div>
                 )}
               </div>

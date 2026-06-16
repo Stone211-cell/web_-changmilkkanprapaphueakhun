@@ -12,28 +12,21 @@ import { Review } from "@/components/DetailsProduct/review";
 const page = () => {
   return (
     <main className="overflow-x-hidden">
-      <div className="flex flex-col gap-24 md:gap-32 lg:gap-48">
+      <div className="flex flex-col gap-12 sm:gap-16 md:gap-24 lg:gap-32 xl:gap-48">
         {/* banner - Full screen cinematic height */}
         <section>
           <BannerImg />
         </section>
 
         {/* service - Standardized grid items */}
-        <section className="container mx-auto px-4">
+        <section className="container mx-auto px-3 sm:px-4">
           <DetailsProductBox />
-          <div id="service" className="mt-12">
+          <div id="service" className="mt-6 sm:mt-8 md:mt-12">
             <CardBox />
           </div>
         </section>
 
-        {/* โชว์ผลงาน - Professional Gallery 
-        
-        
-        อ่อสำหรับทความและประวัติการทำงาน เพิ่ม ประเภทหน่อยนะ แล้วก็ทำระบบ ให้แอดมินเพิ่มประเภทเองได้ด้วย แล้วหน้าโชว์ผลงาน ให้มีtoggle 
-        หรือช่องค้นหาแยกประเภทแยกตามงานด้วยนะ ใช้ shadcn ตกแต่งให้สวยงาม ทันมัยเหมือนเว็บฝรั่งเว็บไอโฟน แล้วก็ระบบแอดกมินให้ใช้ clerk ตัดสินนะว่าเป็นอดมนิรึป่าว โดยต้อวมี 
-        IsAdmis ใน privatedata และช่วยสอนกา่รทำ bucket suprabase หน่อยทำไง 
-        
-        */}
+        {/* โชว์ผลงาน - Professional Gallery */}
         <section>
           <PerformanceShow mainmsg="ดูผลงานทั้งหมดของเรา" />
         </section>
@@ -48,35 +41,35 @@ const page = () => {
           <Mapcontactdetail />
         </section>
 
-        {/* Review testmonials section */}
-        <section className="bg-slate-50 py-24">
-          <div className="container mx-auto px-4 mb-16 text-center">
-            <div className="inline-block px-4 py-1.5 rounded-xl bg-blue-100/50 text-blue-700 text-xs font-black tracking-widest uppercase mb-4">
+        {/* Review testimonials section */}
+        <section className="bg-slate-50 py-12 sm:py-16 md:py-24">
+          <div className="container mx-auto px-3 sm:px-4 mb-8 sm:mb-12 md:mb-16 text-center">
+            <div className="inline-block px-3 sm:px-4 py-1 sm:py-1.5 rounded-xl bg-blue-100/50 text-blue-700 text-[10px] sm:text-xs font-black tracking-widest uppercase mb-3 sm:mb-4">
               Testimonials
             </div>
-            <h2 className="text-4xl md:text-6xl font-black text-slate-900 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl font-black text-slate-900 tracking-tight">
               เสียงยืนยันจาก <br className="md:hidden" />
               <span className="text-blue-600 italic">ลูกค้าผู้ใช้บริการ</span>
             </h2>
-            <div className="w-20 h-1.5 bg-blue-600 mt-8 mx-auto rounded-full"></div>
+            <div className="w-14 sm:w-20 h-1 sm:h-1.5 bg-blue-600 mt-4 sm:mt-6 md:mt-8 mx-auto rounded-full"></div>
           </div>
           <Review />
         </section>
 
         {/* Final CTA - Professional call to action */}
-        <section className="pb-32 px-4">
+        <section className="pb-16 sm:pb-20 md:pb-32 px-3 sm:px-4">
           <div className="max-w-6xl mx-auto">
-            <div className="relative overflow-hidden bg-slate-950 p-10 md:p-24 rounded-[3rem] md:rounded-[5rem] border border-white/5 shadow-2xl">
+            <div className="relative overflow-hidden bg-slate-950 p-6 sm:p-8 md:p-16 lg:p-24 rounded-2xl sm:rounded-[2rem] md:rounded-[3rem] lg:rounded-[5rem] border border-white/5 shadow-2xl">
               {/* Background Glow */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-1/2 bg-blue-600/20 blur-[120px] rounded-full"></div>
 
-              <div className="relative z-10 text-center flex flex-col items-center gap-12">
-                <div className="space-y-4">
-                  <h2 className="text-4xl md:text-7xl font-black text-white tracking-tighter leading-tight">
+              <div className="relative z-10 text-center flex flex-col items-center gap-6 sm:gap-8 md:gap-12">
+                <div className="space-y-3 sm:space-y-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black text-white tracking-tighter leading-tight">
                     ต้องการบริการด่วน <br />
                     <span className="text-blue-500 italic">โทรหาช่างมิล 24 ชม.</span>
                   </h2>
-                  <p className="text-slate-400 text-lg md:text-2xl font-medium max-w-2xl mx-auto">
+                  <p className="text-slate-400 text-sm sm:text-base md:text-lg lg:text-2xl font-medium max-w-2xl mx-auto">
                     พร้อมให้คำปรึกษาและประเมินหน้างานฟรี ทั่วกรุงเทพและปริมณฑล
                   </p>
                 </div>

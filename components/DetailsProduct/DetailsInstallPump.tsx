@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const DetailsInstallPump = () => {
   return (
-    <section className="relative overflow-hidden py-24">
+    <section className="relative overflow-hidden py-12 sm:py-16 md:py-24">
       {/* Background with Dark Overlay */}
       <div className="absolute inset-0">
         <Image
@@ -14,26 +14,26 @@ const DetailsInstallPump = () => {
         <div className="absolute inset-0 bg-slate-950/90 backdrop-blur-[2px]"></div>
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 sm:gap-10 md:gap-16">
           <div className="lg:w-1/2">
-            <div className="inline-block mb-6 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-black tracking-widest uppercase">
+            <div className="inline-block mb-4 sm:mb-6 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] sm:text-xs font-black tracking-widest uppercase">
               Premium Service Standard
             </div>
-            <h2 className="text-5xl md:text-7xl font-black text-white leading-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-white leading-tight mb-4 sm:mb-6 md:mb-8">
               ช่างมิล <span className="text-blue-500">ประปาเพื่อคุณ</span>
             </h2>
-            <p className="text-xl text-slate-300 leading-relaxed font-medium mb-12">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-slate-300 leading-relaxed font-medium mb-6 sm:mb-8 md:mb-12">
               บริการซ่อมแซม และ ติดตั้งระบบประปา สำหรับบ้านและอาคารทุกประเภท
               มั่นใจได้ในคุณภาพงานที่รวดเร็วและประณีต พร้อมทีมช่างผู้ชำนาญการ
-              ยินดีแก้ปัญหาประปา แบบครบวงจร
+              <span className="hidden sm:inline"> ยินดีแก้ปัญหาประปา แบบครบวงจร</span>
             </p>
             <div className="flex flex-wrap gap-4">
-              <div className="w-16 h-1 bg-blue-500 rounded-full"></div>
+              <div className="w-12 sm:w-16 h-1 bg-blue-500 rounded-full"></div>
             </div>
           </div>
 
-          <div className="lg:w-1/2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 w-full">
             {[
               {
                 title: "ซ่อมแซม-ติดตั้ง",
@@ -56,12 +56,12 @@ const DetailsInstallPump = () => {
                 label: "Specialist"
               }
             ].map((item, i) => (
-              <div key={i} className="bg-white/5 backdrop-blur-3xl p-8 rounded-[2rem] border border-white/5 hover:bg-white/10 transition-all duration-500">
-                <span className="text-[10px] font-black text-blue-400 uppercase tracking-widest mb-3 block">
+              <div key={i} className="bg-white/5 backdrop-blur-3xl p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl md:rounded-[2rem] border border-white/5 hover:bg-white/10 transition-all duration-500">
+                <span className="text-[9px] sm:text-[10px] font-black text-blue-400 uppercase tracking-widest mb-2 sm:mb-3 block">
                   {item.label}
                 </span>
-                <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
+                <h3 className="text-base sm:text-lg md:text-xl font-bold text-white mb-2 sm:mb-4">{item.title}</h3>
+                <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
                   {item.desc}
                 </p>
               </div>

@@ -47,34 +47,32 @@ export const ContactIcon = ({
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "group flex flex-col sm:flex-row items-center gap-3 md:gap-4 p-4 md:p-6 rounded-2xl md:rounded-[2rem] transition-all duration-500 h-full w-full border backdrop-blur-3xl shadow-xl",
+        "group flex flex-col items-center justify-center text-center gap-2 sm:gap-3 md:gap-4 p-3 sm:p-4 md:p-6 rounded-xl sm:rounded-2xl md:rounded-[2rem] transition-all duration-500 h-full w-full border backdrop-blur-3xl shadow-xl",
         classtype || "bg-slate-900 text-white border-white/10 hover:border-blue-500/60 hover:shadow-blue-500/20 hover:shadow-2xl hover:bg-slate-800/90 hover:-translate-y-2 hover:scale-[1.03]"
       )}
     >
       <div className={cn(
-        "flex-shrink-0 flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl transition-all duration-500 border group-hover:rotate-[360deg] group-hover:scale-110 shadow-lg",
+        "flex-shrink-0 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16 rounded-lg sm:rounded-xl md:rounded-2xl transition-all duration-500 border group-hover:rotate-[360deg] group-hover:scale-110 shadow-lg",
         getIconColor()
       )}>
         <FontAwesomeIcon
           icon={icontype ?? faFacebook}
-          className="w-5 h-5 md:w-8 md:h-8"
+          className="w-4 h-4 sm:w-5 sm:h-5 md:w-8 md:h-8"
           size={sizeicon === '2x' ? 'lg' : sizeicon}
         />
       </div>
 
-      <div className={cn(
-        "flex flex-col items-center sm:items-start text-center sm:text-left min-w-0 transition-all duration-500",
-        pops === 'hidden' ? 'hidden sm:flex' : 'flex'
-      )}>
+      <div className="flex flex-col min-w-0 transition-all duration-500 items-center justify-center w-full mt-1 sm:mt-2">
         <span className={cn(
-          "text-sm md:text-lg font-black leading-tight mb-1 whitespace-nowrap",
+          "text-xs sm:text-sm md:text-lg font-black leading-tight mb-0.5 sm:mb-1 whitespace-nowrap text-center",
           coloricon === 'white' ? 'text-white' : 'text-white'
         )}>
           {msg}
         </span>
         <span className={cn(
-          "text-[10px] md:text-xs font-bold uppercase tracking-widest leading-none",
-          coloricon === 'white' ? 'text-slate-300 opacity-80' : 'text-blue-400 opacity-90'
+          "text-[9px] sm:text-[10px] md:text-xs font-bold uppercase tracking-wider sm:tracking-widest leading-snug break-words max-w-full",
+          coloricon === 'white' ? 'text-slate-300 opacity-80' : 'text-blue-400 opacity-90',
+          pops === 'hidden' ? 'hidden sm:block' : 'block'
         )}>
           {description}
         </span>

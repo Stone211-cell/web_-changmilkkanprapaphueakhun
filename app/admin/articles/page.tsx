@@ -10,7 +10,7 @@ interface Article {
   id: string;
   title: string;
   excerpt: string;
-  category: string;
+  category: { id: string; name: string } | null;
   slug: string;
   published: boolean;
   createdAt: string;
@@ -91,7 +91,7 @@ export default function ArticlesPage() {
   // ค้นหาบทความ (เอาเฉพาะที่มีคำที่เราพิมพ์)
   const filteredArticles = articles.filter((article) => {
     const titleMatch = article.title.toLowerCase().includes(search.toLowerCase());
-    const categoryMatch = article.category.toLowerCase().includes(search.toLowerCase());
+    const categoryMatch = (article.category?.name || "").toLowerCase().includes(search.toLowerCase());
     
     // ถ้าเจอในชื่อ หรือ เจอในหมวดหมู่ ให้แสดงบทความนั้น
     if (titleMatch === true || categoryMatch === true) {
@@ -188,7 +188,7 @@ export default function ArticlesPage() {
                     </span>
                     {/* ป้ายบอกหมวดหมู่ */}
                     <span className="text-[10px] text-slate-500 font-medium">
-                      {article.category}
+                      {article.category?.name || "ทั่วไป"}
                     </span>
                   </div>
                   <h3 className="text-white font-bold text-sm truncate group-hover:text-blue-400 transition-colors">

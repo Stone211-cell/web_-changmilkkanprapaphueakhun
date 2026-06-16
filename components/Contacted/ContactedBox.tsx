@@ -38,10 +38,10 @@ const ContactedBox = ({ classtype, pops }: classtype) => {
   }, { scope: containerRef });
 
   return (
-    <div className="w-full flex justify-center my-6">
+    <div className="w-full flex justify-center my-4 sm:my-6">
       <div
         ref={containerRef}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 px-4 md:px-8 max-w-7xl w-full"
+        className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3 md:gap-6 lg:gap-8 px-0 sm:px-4 md:px-8 max-w-7xl w-full"
       >
         <div className="h-full w-full">
           <ContactIcon
