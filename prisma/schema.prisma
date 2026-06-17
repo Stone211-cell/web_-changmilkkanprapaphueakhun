@@ -37,6 +37,8 @@ model Portfolio {
   title       String
   description String?
   image       String
+  videoUrl    String?
+  mediaType   String    @default("image") // "image" หรือ "video"
   categoryId  String?
   category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   featured    Boolean   @default(false)

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { ArrowLeft, Upload, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Upload, Save, Loader2, X } from "lucide-react";
 import Link from "next/link";
 
 export default function NewPortfolioPage() {
@@ -124,13 +124,15 @@ export default function NewPortfolioPage() {
                 className="w-full h-64 object-cover rounded-xl"
               />
               <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.preventDefault();
                   setImage("");
                   if (fileInputRef.current) fileInputRef.current.value = "";
                 }}
-                className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm"
+                className="absolute top-2 right-2 bg-black/60 hover:bg-red-500 text-white p-2 rounded-full backdrop-blur-sm transition-all z-10"
+                title="ลบรูปภาพ"
               >
-                คลิกเพื่อเปลี่ยน
+                <X className="w-5 h-5" />
               </button>
             </div>
           ) : (

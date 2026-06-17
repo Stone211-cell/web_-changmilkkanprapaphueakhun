@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef, use } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { ArrowLeft, Upload, Save, Loader2 } from "lucide-react";
+import { ArrowLeft, Upload, Save, Loader2, X } from "lucide-react";
 import Link from "next/link";
 
 interface Portfolio {
@@ -166,10 +166,15 @@ export default function EditPortfolioPage({
                 className="w-full h-64 object-cover rounded-xl"
               />
               <button
-                onClick={() => fileInputRef.current?.click()}
-                className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white font-bold text-sm"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setImage("");
+                  if (fileInputRef.current) fileInputRef.current.value = "";
+                }}
+                className="absolute top-2 right-2 bg-black/60 hover:bg-red-500 text-white p-2 rounded-full backdrop-blur-sm transition-all z-10"
+                title="ลบรูปภาพ"
               >
-                คลิกเพื่อเปลี่ยนรูปภาพ
+                <X className="w-5 h-5" />
               </button>
             </div>
           ) : (

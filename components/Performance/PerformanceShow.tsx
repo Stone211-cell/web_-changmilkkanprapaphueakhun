@@ -59,7 +59,7 @@ const PerformanceShow = ({
 
   useGSAP(() => {
     if (loading) return;
-    
+
     gsap.from(titleRef.current, {
       y: 30,
       opacity: 0,
@@ -91,7 +91,7 @@ const PerformanceShow = ({
             Project Gallery
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center text-foreground mb-4 sm:mb-6 md:mb-8">
-            ผลงานของเรา
+            ติดตามผลงานของเราได้ใน Facebook
           </h2>
           {mainmsg && (
             <Button

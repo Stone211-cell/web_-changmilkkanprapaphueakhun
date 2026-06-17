@@ -85,7 +85,7 @@ const Headeravbar = ({ isAdmin: initialIsAdmin }: { isAdmin?: boolean }) => {
           {isAdmin && (
             <Link
               href="/admin"
-              className="hidden sm:flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-3 sm:px-4 md:px-5 py-2 md:py-3 rounded-full text-[10px] sm:text-xs font-black transition-all border border-slate-700 hover:border-slate-500 shadow-lg shadow-black/20"
+              className="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 text-white px-3 sm:px-4 md:px-5 py-2 md:py-3 rounded-full text-[10px] sm:text-xs font-black transition-all border border-slate-700 hover:border-slate-500 shadow-lg shadow-black/20"
             >
               <LayoutDashboard className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               <span className="hidden md:inline">แดชบอร์ดแอดมิน</span>
