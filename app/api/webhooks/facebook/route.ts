@@ -5,7 +5,18 @@ const prisma = new PrismaClient();
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    let body: any = {};
+    const contentType = request.headers.get('content-type') || '';
+
+    if (contentType.includes('application/json')) {
+      body = await request.json();
+    } else if (contentType.includes('application/x-www-form-urlencoded') || contentType.includes('multipart/form-data')) {
+      const formData = await request.formData();
+      body = Object.fromEntries(formData.entries());
+    } else {
+      // Fallback
+      body = await request.json().catch(() => ({}));
+    }
 
     // ข้อมูลที่เราจะให้ Make.com ยิงมา
     // {
