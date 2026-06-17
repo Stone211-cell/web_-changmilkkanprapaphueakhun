@@ -59,10 +59,15 @@ export async function POST(request: Request) {
         videoUrl: videoUrl || null,
         mediaType: mediaType || (videoUrl ? 'video' : 'image'),
         categoryId: categoryId,
-        featured: false,
+        featured: true, // ตั้งเป็น true ให้โชว์หน้าแรกด้วย
         displayOrder: 1000
       }
     });
+
+    // สั่งล้างแคชเพื่อให้เว็บอัปเดตหน้าใหม่ทันที
+    const { revalidatePath } = require('next/cache');
+    revalidatePath('/');
+    revalidatePath('/performance');
 
     return NextResponse.json({ success: true, data: portfolio });
 
