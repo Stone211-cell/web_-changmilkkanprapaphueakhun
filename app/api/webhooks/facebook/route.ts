@@ -50,12 +50,26 @@ export async function POST(request: Request) {
       categoryId = category.id;
     }
 
+    // ดึง URL รูปภาพให้ชัวร์ (บางที Make.com ส่งมาเป็น Tag HTML)
+    let finalImage = image;
+    if (!finalImage || finalImage.includes('<img')) {
+      const match = (finalImage || description || '').match(/src="([^"]+)"/);
+      if (match) {
+        finalImage = match[1];
+      }
+    }
+    
+    // ถ้าไม่มีรูปจริงๆ ให้ใช้รูปสำรองที่มีอยู่จริง
+    if (!finalImage || (!finalImage.startsWith('http') && !finalImage.startsWith('/'))) {
+      finalImage = '/images/performance/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg';
+    }
+
     // สร้างผลงานใหม่
     const portfolio = await prisma.portfolio.create({
       data: {
         title: title.substring(0, 100), // จำกัดความยาวหัวข้อ
         description: description || null,
-        image: image || '/images/service/placeholder.jpg', // ถ้าไม่มีรูปให้ใช้รูปพื้นฐาน
+        image: finalImage,
         videoUrl: videoUrl || null,
         mediaType: mediaType || (videoUrl ? 'video' : 'image'),
         categoryId: categoryId,
