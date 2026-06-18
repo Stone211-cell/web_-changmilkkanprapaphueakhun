@@ -20,6 +20,8 @@ const PerformanceBox = async ({
     name: string;
     categoryId?: string | null;
     categoryName?: string | null;
+    videoUrl?: string | null;
+    mediaType?: string;
   }[] = [];
 
   let categories: { id: string; name: string }[] = [];
@@ -44,6 +46,8 @@ const PerformanceBox = async ({
         name: p.title,
         categoryId: p.categoryId,
         categoryName: p.category?.name,
+        videoUrl: p.videoUrl,
+        mediaType: p.mediaType,
       }));
     } else {
       throw new Error("No portfolios in DB, fallback to filesystem");
@@ -72,6 +76,8 @@ const PerformanceBox = async ({
         name: "ซ่อมด่วน 24 ชั่วโมง ติดต่อช่างมิล",
         categoryId: null,
         categoryName: null,
+        videoUrl: null,
+        mediaType: "image",
       }));
     } catch {
       portfolioItems = [];

@@ -17,6 +17,8 @@ interface PortfolioItem {
   name: string;
   categoryId?: string | null;
   categoryName?: string | null;
+  videoUrl?: string | null;
+  mediaType?: string;
 }
 
 interface PerformanceFilterableProps {
@@ -129,6 +131,8 @@ export default function PerformanceFilterable({
                 <PerformanceContainer
                   image={item.image}
                   name={item.name}
+                  videoUrl={item.videoUrl}
+                  mediaType={item.mediaType}
                 />
               </motion.div>
             ))

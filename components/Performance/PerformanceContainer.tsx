@@ -3,21 +3,34 @@ import Image from "next/image";
 const PerformanceContainer = ({
   image,
   name,
+  description,
+  videoUrl,
+  mediaType,
 }: {
   image: string;
   name: string;
   description?: string;
+  videoUrl?: string | null;
+  mediaType?: string;
 }) => {
   return (
     <article className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
-        <Image
-          src={image}
-          sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-          alt={name}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-        />
+      <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 flex items-center justify-center">
+        {mediaType === "video" && videoUrl ? (
+          <video
+            src={videoUrl}
+            controls
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        ) : (
+          <Image
+            src={image || "/images/performance/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}
+            sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+            alt={name}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
       </div>
 
