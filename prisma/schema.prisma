@@ -38,6 +38,7 @@ model Portfolio {
   description String?
   image       String
   videoUrl    String?
+  postUrl     String?
   mediaType   String    @default("image") // "image" หรือ "video"
   categoryId  String?
   category    Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)

@@ -22,6 +22,7 @@ const PerformanceBox = async ({
     categoryName?: string | null;
     videoUrl?: string | null;
     mediaType?: string;
+    postUrl?: string | null;
   }[] = [];
 
   let categories: { id: string; name: string }[] = [];
@@ -47,6 +48,7 @@ const PerformanceBox = async ({
         categoryId: p.categoryId,
         categoryName: p.category?.name,
         videoUrl: p.videoUrl,
+        postUrl: p.postUrl,
         mediaType: p.mediaType,
       }));
     } else {
@@ -77,6 +79,7 @@ const PerformanceBox = async ({
         categoryId: null,
         categoryName: null,
         videoUrl: null,
+        postUrl: null,
         mediaType: "image",
       }));
     } catch {

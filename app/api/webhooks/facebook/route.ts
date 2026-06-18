@@ -30,10 +30,11 @@ export async function POST(request: Request) {
     //   "image": "URL รูปภาพจาก Facebook (ถ้ามี)",
     //   "videoUrl": "URL วิดีโอจาก Facebook (ถ้ามี)",
     //   "mediaType": "image" หรือ "video",
-    //   "categoryName": "ชื่อหมวดหมู่ (ออปชันเสริม)"
+    //   "categoryName": "ชื่อหมวดหมู่ (ออปชันเสริม)",
+    //   "postUrl": "URL ของโพสต์ (ถ้ามี)"
     // }
 
-    const { title, description, image, videoUrl, mediaType, categoryName } = body;
+    const { title, description, image, videoUrl, mediaType, categoryName, postUrl } = body;
 
     // ตรวจสอบข้อมูลเบื้องต้น
     if (!title) {
@@ -72,10 +73,11 @@ export async function POST(request: Request) {
     // สร้างผลงานใหม่
     const portfolio = await prisma.portfolio.create({
       data: {
-        title: title.substring(0, 100), // จำกัดความยาวหัวข้อ
+        title: title.substring(0, 200), // จำกัดความยาวหัวข้อ
         description: description || null,
         image: finalImage,
         videoUrl: videoUrl || null,
+        postUrl: postUrl || null,
         mediaType: mediaType || (videoUrl ? 'video' : 'image'),
         categoryId: categoryId,
         featured: true, // ตั้งเป็น true ให้โชว์หน้าแรกด้วย

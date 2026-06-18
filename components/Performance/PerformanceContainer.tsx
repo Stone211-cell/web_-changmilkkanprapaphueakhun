@@ -6,12 +6,14 @@ const PerformanceContainer = ({
   description,
   videoUrl,
   mediaType,
+  postUrl,
 }: {
   image: string;
   name: string;
   description?: string;
   videoUrl?: string | null;
   mediaType?: string;
+  postUrl?: string | null;
 }) => {
   const isFacebookVideo = videoUrl && (videoUrl.includes("facebook.com") || videoUrl.includes("fb.watch"));
   const fbEmbedUrl = isFacebookVideo ? `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(videoUrl!)}&show_text=false&width=500` : "";
@@ -37,21 +39,41 @@ const PerformanceContainer = ({
             />
           )
         ) : (
-          <Image
-            src={image || "/images/performance/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}
-            sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-            alt={name}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
-          />
+          postUrl ? (
+            <a href={postUrl} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative">
+              <Image
+                src={image || "/images/performance/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}
+                sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+                alt={name}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+            </a>
+          ) : (
+            <Image
+              src={image || "/images/performance/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}
+              sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+              alt={name}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+          )
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
       </div>
 
       <div className="p-3.5 sm:p-4 md:p-5 flex flex-col flex-grow">
-        <h3 className="text-sm sm:text-base md:text-lg font-bold text-slate-800 leading-tight mb-1.5 sm:mb-2 group-hover:text-blue-600 transition-colors">
-          {name}
-        </h3>
+        {postUrl ? (
+          <a href={postUrl} target="_blank" rel="noopener noreferrer">
+            <h3 className="line-clamp-3 text-sm sm:text-base md:text-lg font-bold text-slate-800 leading-tight mb-1.5 sm:mb-2 group-hover:text-blue-600 transition-colors" title={name}>
+              {name}
+            </h3>
+          </a>
+        ) : (
+          <h3 className="line-clamp-3 text-sm sm:text-base md:text-lg font-bold text-slate-800 leading-tight mb-1.5 sm:mb-2 group-hover:text-blue-600 transition-colors" title={name}>
+            {name}
+          </h3>
+        )}
         <div className="mt-auto flex items-center justify-between">
           <p className="text-xs sm:text-sm font-bold text-blue-600">ช่างมิล ประปา</p>
           <p className="text-[10px] sm:text-xs font-medium text-slate-400">064-408-8510</p>
