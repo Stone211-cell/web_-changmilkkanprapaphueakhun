@@ -13,15 +13,29 @@ const PerformanceContainer = ({
   videoUrl?: string | null;
   mediaType?: string;
 }) => {
+  const isFacebookVideo = videoUrl && (videoUrl.includes("facebook.com") || videoUrl.includes("fb.watch"));
+  const fbEmbedUrl = isFacebookVideo ? `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(videoUrl!)}&show_text=false&width=500` : "";
+
   return (
     <article className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 flex items-center justify-center">
         {mediaType === "video" && videoUrl ? (
-          <video
-            src={videoUrl}
-            controls
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
+          isFacebookVideo ? (
+            <iframe
+              src={fbEmbedUrl}
+              className="w-full h-full border-none overflow-hidden"
+              scrolling="no"
+              frameBorder="0"
+              allowFullScreen={true}
+              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            ></iframe>
+          ) : (
+            <video
+              src={videoUrl}
+              controls
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+          )
         ) : (
           <Image
             src={image || "/images/performance/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}

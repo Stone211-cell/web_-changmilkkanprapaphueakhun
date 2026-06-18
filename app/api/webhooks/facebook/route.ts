@@ -18,6 +18,11 @@ export async function POST(request: Request) {
       body = await request.json().catch(() => ({}));
     }
 
+    // แก้ปัญหา Make.com ส่ง key มาแล้วเผลอเคาะ Space bar ด้านหลัง (เช่น "description ")
+    if (body && typeof body === 'object') {
+      body = Object.fromEntries(Object.entries(body).map(([k, v]) => [k.trim(), v]));
+    }
+
     // ข้อมูลที่เราจะให้ Make.com ยิงมา
     // {
     //   "title": "หัวข้อโพสต์ หรือ ข้อความสั้นๆ",
