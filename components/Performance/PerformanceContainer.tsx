@@ -16,31 +16,26 @@ const PerformanceContainer = ({
   postUrl?: string | null;
 }) => {
   const isFacebookVideo = videoUrl && (videoUrl.includes("facebook.com") || videoUrl.includes("fb.watch"));
-  const fbEmbedUrl = isFacebookVideo ? `https://www.facebook.com/plugins/video.php?href=${encodeURIComponent(videoUrl!)}&show_text=false&width=500` : "";
+  const clickUrl = videoUrl || postUrl;
+
+  const PlayIcon = () => (
+    <svg className="w-12 h-12 text-white opacity-80 group-hover:opacity-100 transition-opacity drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
+      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
+    </svg>
+  );
 
   return (
     <article className="group relative bg-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500 flex flex-col h-full">
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-slate-100 flex items-center justify-center">
-        {mediaType === "video" && videoUrl ? (
-          isFacebookVideo ? (
-            <iframe
-              src={fbEmbedUrl}
-              className="w-full h-full border-none overflow-hidden"
-              scrolling="no"
-              frameBorder="0"
-              allowFullScreen={true}
-              allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            ></iframe>
-          ) : (
-            <video
-              src={videoUrl}
-              controls
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-          )
+        {mediaType === "video" && videoUrl && !isFacebookVideo ? (
+          <video
+            src={videoUrl}
+            controls
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
         ) : (
-          postUrl ? (
-            <a href={postUrl} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative">
+          clickUrl ? (
+            <a href={clickUrl} target="_blank" rel="noopener noreferrer" className="block w-full h-full relative flex items-center justify-center group/img">
               <Image
                 src={image || "/images/performance/LINE_ALBUM_รูปตอนทำงาน_250618_1.jpg"}
                 sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
@@ -48,6 +43,11 @@ const PerformanceContainer = ({
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
+              {mediaType === "video" && (
+                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                  <PlayIcon />
+                </div>
+              )}
             </a>
           ) : (
             <Image
