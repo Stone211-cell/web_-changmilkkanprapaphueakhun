@@ -8,6 +8,46 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+model chat_messages {
+  id         String   @id
+  user_id    String
+  channel_id String
+  guild_id   String?
+  role       String
+  content    String
+  tokens     Int?
+  model      String?
+  created_at DateTime @default(now())
+  users      users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@index([channel_id])
+  @@index([created_at])
+  @@index([user_id])
+}
+
+model global_knowledge {
+  id         String   @id
+  topic      String
+  fact       String
+  created_at DateTime @default(now())
+}
+
+model users {
+  id                      String          @id
+  discord_id              String          @unique
+  username                String
+  discriminator           String          @default("0")
+  avatar_url              String?
+  is_bot                  Boolean         @default(false)
+  created_at              DateTime        @default(now())
+  updated_at              DateTime
+  summary                 String?
+  msg_count_since_summary Int             @default(0)
+  affinity                Int             @default(0)
+  relationship_status     String?
+  chat_messages           chat_messages[]
+}
+
 model Category {
   id         String      @id @default(cuid())
   name       String      @unique
