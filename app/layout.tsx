@@ -6,6 +6,7 @@ import "./globals.css";
 import Headeravbar from "@/components/Navbar/Headeravbar";
 import { Kanit } from "next/font/google";
 import Footerbar from "@/components/Footer/Footerbar";
+import { CookieConsent } from "@/components/ui/cookie-consent";
 
 
 const kanit = Kanit({
@@ -33,7 +34,28 @@ export const metadata: Metadata = {
     "ช่างประปาใกล้ฉัน",
     "ช่างประปา 24 ชั่วโมง",
   ],
-
+  authors: [{ name: "ช่างมิลการประปา" }],
+  creator: "ช่างมิลการประปา",
+  publisher: "ช่างมิลการประปา",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "rBG9fk53GgPvQmtLD6lmZfnH5RFzwDyKExNqNlMv3ts",
+  },
   icons: {
     icon: "/images/service/LOGO.jpg",
     apple: "/images/service/LOGO.jpg",
@@ -46,10 +68,15 @@ export const metadata: Metadata = {
     description:
       "ช่างมิลการประปา บริการรับซ่อมประปา หาจุดรั่ว เดินท่อประปา ติดตั้งปั๊มน้ำ แท็งก์น้ำ และเปลี่ยนสุขภัณฑ์ ครบวงจร โดยทีมช่างมืออาชีพ ประเมินหน้างานฟรี ทั่วกรุงเทพฯ-ปริมณฑล",
     url: "https://xn--12cli4ea7apbo8ioaeft01a.com/",
+    siteName: "ช่างมิลการประปา",
     type: "website",
+    locale: "th_TH",
     images: [
       {
         url: "/images/service/LOGO.jpg",
+        width: 1200,
+        height: 630,
+        alt: "ช่างมิลการประปา",
       },
     ],
   },
@@ -131,6 +158,7 @@ export default async function RootLayout({
           <Headeravbar />
           {children}
           <Footerbar />
+          <CookieConsent />
         </body>
       </html>
     </ClerkProvider>
