@@ -7,6 +7,7 @@ import Headeravbar from "@/components/Navbar/Headeravbar";
 import { Kanit } from "next/font/google";
 import Footerbar from "@/components/Footer/Footerbar";
 import { CookieConsent } from "@/components/ui/cookie-consent";
+import { GoogleAdsTracker } from "@/components/GoogleAdsTracker";
 
 
 const kanit = Kanit({
@@ -159,6 +160,7 @@ export default async function RootLayout({
           {children}
           <Footerbar />
           <CookieConsent />
+          <GoogleAdsTracker />
         </body>
       </html>
     </ClerkProvider>
