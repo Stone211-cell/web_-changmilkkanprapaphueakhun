@@ -56,10 +56,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: [
-      "rBG9fk53GgPvQmtLD6lmZfnH5RFzwDyKExNqNlMv3ts",
-      "l82HlIjxxAcUK0TBX7poey4Q3v8f8j6lKEIBqn5258M",
-    ],
+    google: "l82HlIjxxAcUK0TBX7poey4Q3v8f8j6lKEIBqn5258M",
   },
   icons: {
     icon: "/images/service/LOGO.jpg",
