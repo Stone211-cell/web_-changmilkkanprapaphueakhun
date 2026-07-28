@@ -15,10 +15,8 @@ const kanit = Kanit({
   weight: ["200", "400", "700"],
 });
 
-// กำหนด base url สำหรับ metadata
-export const metadataBase = new URL("https://xn--12cli4ea7apbo8ioaeft01a.com/");
-
 export const metadata: Metadata = {
+  metadataBase: new URL("https://xn--12cli4ea7apbo8ioaeft01a.com/"),
   title:
     "ช่างมิลการประปา | รับซ่อมประปา หาจุดรั่ว กทม. และปริมณฑล 24 ชม.",
   description:
@@ -63,6 +61,9 @@ export const metadata: Metadata = {
     apple: "/images/service/LOGO.jpg",
     shortcut: "/images/service/LOGO.jpg",
   },
+  alternates: {
+    canonical: "https://xn--12cli4ea7apbo8ioaeft01a.com/",
+  },
 
   openGraph: {
     title:
@@ -90,11 +91,6 @@ export const metadata: Metadata = {
     description:
       "ช่างมิลการประปา บริการรับซ่อมประปา หาจุดรั่ว เดินท่อประปา ติดตั้งปั๊มน้ำ แท็งก์น้ำ และเปลี่ยนสุขภัณฑ์ ครบวงจร โดยทีมช่างมืออาชีพ ประเมินหน้างานฟรี ทั่วกรุงเทพฯ-ปริมณฑล",
     images: ["/images/service/LOGO.jpg"],
-  },
-
-  other: {
-    charset: "UTF-8",
-    canonical: "https://xn--12cli4ea7apbo8ioaeft01a.com/",
   },
 };
 
