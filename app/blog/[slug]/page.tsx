@@ -19,6 +19,8 @@ import { notFound } from "next/navigation";
 export const dynamic = "force-dynamic";
 
 // Generate metadata
+const BASE_URL = "https://xn--12cli4ea7apbo8ioaeft01a.com";
+
 export async function generateMetadata({
   params,
 }: {
@@ -31,9 +33,42 @@ export async function generateMetadata({
 
   if (!article) return { title: "ไม่พบบทความ" };
 
+  const canonicalUrl = `${BASE_URL}/blog/${slug}`;
+  const imageUrl = article.image?.startsWith("http")
+    ? article.image
+    : `${BASE_URL}${article.image}`;
+
   return {
     title: `${article.title} | ช่างมิลการประปา`,
     description: article.excerpt,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${article.title} | ช่างมิลการประปา`,
+      description: article.excerpt,
+      url: canonicalUrl,
+      siteName: "ช่างมิลการประปา",
+      type: "article",
+      locale: "th_TH",
+      publishedTime: article.createdAt.toISOString(),
+      modifiedTime: article.updatedAt.toISOString(),
+      authors: [article.author],
+      images: [
+        {
+          url: imageUrl,
+          width: 1200,
+          height: 630,
+          alt: article.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${article.title} | ช่างมิลการประปา`,
+      description: article.excerpt,
+      images: [imageUrl],
+    },
   };
 }
 
@@ -81,7 +116,41 @@ export default async function BlogDetailPage({
 
   return (
     <article className="bg-[#f8fafc] min-h-screen pb-24 pt-32 selection:bg-blue-200">
+      {/* Article JSON-LD Schema — ช่วยให้ Google แสดง Rich Results */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: article.title,
+            description: article.excerpt,
+            image: article.image?.startsWith("http")
+              ? article.image
+              : `${BASE_URL}${article.image}`,
+            datePublished: article.createdAt.toISOString(),
+            dateModified: article.updatedAt.toISOString(),
+            author: {
+              "@type": "Person",
+              name: article.author,
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "ช่างมิลการประปา",
+              logo: {
+                "@type": "ImageObject",
+                url: `${BASE_URL}/images/service/LOGO.jpg`,
+              },
+            },
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `${BASE_URL}/blog/${article.slug}`,
+            },
+          }),
+        }}
+      />
       <div className="absolute top-0 left-0 w-full h-96 bg-gradient-to-b from-blue-50/50 to-transparent -z-10" />
+
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Link */}

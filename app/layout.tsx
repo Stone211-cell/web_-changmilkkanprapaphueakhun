@@ -35,6 +35,7 @@ export const metadata: Metadata = {
     "ช่างประปาใกล้ฉัน",
     "ช่างประปา 24 ชั่วโมง",
   ],
+
   authors: [{ name: "ช่างมิลการประปา" }],
   creator: "ช่างมิลการประปา",
   publisher: "ช่างมิลการประปา",
@@ -55,7 +56,10 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "rBG9fk53GgPvQmtLD6lmZfnH5RFzwDyKExNqNlMv3ts",
+    google: [
+      "rBG9fk53GgPvQmtLD6lmZfnH5RFzwDyKExNqNlMv3ts",
+      "l82HlIjxxAcUK0TBX7poey4Q3v8f8j6lKEIBqn5258M",
+    ],
   },
   icons: {
     icon: "/images/service/LOGO.jpg",
